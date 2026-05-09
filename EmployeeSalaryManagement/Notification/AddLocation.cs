@@ -1,5 +1,7 @@
 ﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
 using EmployeeSalaryManagement.Model;
+using EmployeeSalaryManagement.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,16 +19,16 @@ namespace EmployeeSalaryManagement.Notification
             InitializeComponent();
         }
 
-        private void AddingLoc(object sender, EventArgs e)
+        private async void AddingLoc(object sender, EventArgs e)
         {
-            var db = new SalaryDbContext();
+            ILocationRepository repo = new LocationRepository( new SalaryDbContext());
             var location = new Location
             {
                 LocationName = txtLocation.Text,
                 LocationAddress = txtAddress.Text
             };
-            db.Locations.Add(location);
-            db.SaveChanges();
+            await repo.AddAsync(location);
+            await repo.SaveAsync();
             this.Hide();
         }
     }

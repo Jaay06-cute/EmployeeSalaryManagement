@@ -1,4 +1,7 @@
-﻿using System;
+﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,26 +16,14 @@ namespace EmployeeSalaryManagement
         public DashboardControl()
         {
             InitializeComponent();
+            Info();
         }
-
-        private void label2_Click(object sender, EventArgs e)
+        private async void Info()
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            IEmployeeRepository employee = new EmployeeRepository(new SalaryDbContext());
+            lblEmployee.Text = employee.GetAllAsync().Result.Count().ToString();
+            IPositionRepository position = new PositionRepository(new SalaryDbContext());
+            lblSalary.Text ="P" + await position.GetTotalCompanyPayrollAsync();
         }
     }
 }

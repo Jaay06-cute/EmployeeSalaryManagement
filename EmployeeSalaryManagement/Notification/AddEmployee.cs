@@ -1,4 +1,6 @@
 ﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,16 +20,16 @@ namespace EmployeeSalaryManagement.Notification
             _PositionId = PositionId;
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            var db = new SalaryDbContext();
+            IEmployeeRepository repo = new EmployeeRepository(new SalaryDbContext());
             var employee = new Model.Employee
             {
                 EmployeeName = txtName.Text,
                 PositionId = _PositionId,
             };
-            db.Employees.Add(employee);
-            db.SaveChanges();
+            await repo.AddAsync(employee);
+            await repo.SaveAsync();
             this.Hide();
         }
     }

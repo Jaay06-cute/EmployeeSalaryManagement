@@ -1,5 +1,6 @@
 ﻿using EmployeeSalaryManagement.Card;
 using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
 using EmployeeSalaryManagement.Model;
 using EmployeeSalaryManagement.Notification;
 using System;
@@ -17,12 +18,14 @@ namespace EmployeeSalaryManagement.LocationControls
     {
         private int _locationId;
         private string _locationName;
+        private readonly IPositionRepository _positionRepo;
 
         public DowntownOfficeControl(int locationId, string locationName)
         {
             InitializeComponent();
             _locationId = locationId;
             _locationName = locationName;
+            _positionRepo = new Repository.PositionRepository(new SalaryDbContext());
             LoadPosition();
             lblHeader.Text = locationName;
         }
@@ -47,38 +50,34 @@ namespace EmployeeSalaryManagement.LocationControls
             main.ShowDialog();
             LoadPosition();
         }
-        public void LoadPosition()
+        public async void LoadPosition()
         {
             try
             {
                 flpPosition.Controls.Clear();
 
-                using (var context = new SalaryDbContext())
+                // Call the repository instead of creating a DbContext here
+                var positions = await _positionRepo.GetPositionsByLocationAsync(_locationId);
+
+                foreach (var pos in positions)
                 {
-                    var positions = context.Positions
-                                   .Where(p => p.LocationId == _locationId)
-                                   .ToList();
-                   
-                    foreach (var pos in positions)
+                    // Employees are already loaded, so we just count the list in memory
+                    int employeeCount = pos.Employees.Count;
+
+                    var card = new PositionCard();
+                    card.lblPosition.Text = pos.WorkPosition;
+                    card.lblSalary.Text = "P" + pos.Salary.ToString();
+                    card.lblEmployee.Text = employeeCount.ToString();
+
+                    int currentId = pos.PositionId;
+                    string currentName = pos.WorkPosition;
+
+                    card.CardClicked += (s, e) =>
                     {
-                        int employeeCount = context.Employees
-                                   .Count(e => e.PositionId == pos.PositionId);
-                        var card = new PositionCard();
-                        card.lblPosition.Text = pos.WorkPosition;
-                        card.lblSalary.Text = "P" + pos.Salary.ToString();
-                        card.lblEmployee.Text = employeeCount.ToString();
+                        LoadControl(new LaborEmployeesController(currentId, currentName, _locationName, _locationId));
+                    };
 
-                        int currentId = pos.PositionId;
-                        string currentName = pos.WorkPosition;
-
-                        card.CardClicked += (s, e) =>
-                        {
-                            LoadControl(new LaborEmployeesController(currentId, currentName, _locationName, _locationId));
-                        };
-
-                        flpPosition.Controls.Add(card);
-
-                    }
+                    flpPosition.Controls.Add(card);
                 }
             }
             catch (Exception ex)

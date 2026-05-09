@@ -1,6 +1,7 @@
 ﻿using EmployeeSalaryManagement.Card;
 using EmployeeSalaryManagement.EmployeeManagementDbContext;
 using EmployeeSalaryManagement.Notification;
+using EmployeeSalaryManagement.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,40 +26,31 @@ namespace EmployeeSalaryManagement.LocationControls
             uc.Dock = DockStyle.Fill;
             LocationMainContent.Controls.Add(uc);
         }
-        public void LoadLocations()
+        public async void LoadLocations()
         {
             flpLocation.Controls.Clear();
+            var repo = new LocationRepository(new SalaryDbContext());
+            var locations = await repo.GetLocationsWithDetailsAsync();
 
-            using (var context = new SalaryDbContext())
+            foreach (var loc in locations)
             {
-                var locations = context.Locations.ToList();
+                int positionCount = loc.Positions.Count;
+                int totalEmployeeCount = loc.Positions.Sum(p => p.Employees.Count);
 
-                foreach (var loc in locations)
-                {
-                    var positionIdsForThisLocation = context.Positions
-            .Where(p => p.LocationId == loc.LocationId)
-            .Select(p => p.PositionId)
-            .ToList();
+                var card = new LocationCardControl();
+                card.lblLocation.Text = loc.LocationName;
+                card.lblAdress.Text = loc.LocationAddress;
+                card.lblJobs.Text = $"Jobs: {positionCount}";
+                card.lblEmployees.Text = $"Employees: {totalEmployeeCount}";
 
-                    int positionCount = positionIdsForThisLocation.Count;
+                int currentId = loc.LocationId;
+                string currentName = loc.LocationName;
 
-                    int totalEmployeeCount = context.Employees
-                        .Count(e => positionIdsForThisLocation.Contains(e.PositionId));
-                    var card = new LocationCardControl();
-                    card.lblLocation.Text = loc.LocationName;
-                    card.lblAdress.Text = loc.LocationAddress;
-                    card.lblJobs.Text = $"Jobs: {positionCount}";
-                    card.lblEmployees.Text = $"Employees: {totalEmployeeCount}";
+                card.CardClicked += (s, e) => {
+                    LoadControl(new DowntownOfficeControl(currentId, currentName));
+                };
 
-                    int currentId = loc.LocationId;
-                    string currentName = loc.LocationName;
-
-                    card.CardClicked += (s, e) => {
-                        LoadControl(new DowntownOfficeControl(currentId, currentName));
-                    };
-
-                    flpLocation.Controls.Add(card);
-                }
+                flpLocation.Controls.Add(card);
             }
         }
         private void AddLocationClick(object sender, EventArgs e)

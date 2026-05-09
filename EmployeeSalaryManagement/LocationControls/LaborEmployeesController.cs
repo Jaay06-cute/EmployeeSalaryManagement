@@ -1,4 +1,5 @@
 ﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
 using EmployeeSalaryManagement.Model;
 using EmployeeSalaryManagement.Notification;
 using System;
@@ -16,6 +17,8 @@ namespace EmployeeSalaryManagement.LocationControls
         private int _PositionId;
         private string _Location;
         private int _LocationId;
+        private readonly IEmployeeRepository _employeeRepo;
+
         public LaborEmployeesController(int positionId, string positionName, string Location, int locationId)
         {
             InitializeComponent();
@@ -23,6 +26,7 @@ namespace EmployeeSalaryManagement.LocationControls
             _Location = Location;
             _LocationId = locationId;
             lblLabor.Text = positionName + " Employee";
+            _employeeRepo = new Repository.EmployeeRepository(new SalaryDbContext());
             Info();
         }
         private void LoadControl(UserControl uc)
@@ -48,15 +52,22 @@ namespace EmployeeSalaryManagement.LocationControls
             main.ShowDialog();
             Info();
         }
-        private void Info()
+        private async void Info()
         {
-            var db = new SalaryDbContext();
-            dataGridView1.DataSource = db.Employees.Where(e => e.PositionId == _PositionId).Select(e => new
+            try
             {
-                ID = e.EmployeeID,
-                Name = e.EmployeeName,
-                Salary = e.Position.Salary
-            }).ToList();
+                var employees = await _employeeRepo.GetEmployeesByPositionAsync(_PositionId);
+                dataGridView1.DataSource = employees.Select(e => new
+                {
+                    ID = e.EmployeeID,
+                    Name = e.EmployeeName,
+                    Salary = e.Position.Salary
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading employees: " + ex.Message);
+            }
         }
     }
 }
