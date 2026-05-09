@@ -31,9 +31,9 @@
             pnlLogin = new Panel();
             btnLogin = new Button();
             label2 = new Label();
-            txtPassword = new TextBox();
+            txtSalary = new TextBox();
             label1 = new Label();
-            txtUsername = new TextBox();
+            txtPosition = new TextBox();
             pnlLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -41,9 +41,9 @@
             // 
             pnlLogin.Controls.Add(btnLogin);
             pnlLogin.Controls.Add(label2);
-            pnlLogin.Controls.Add(txtPassword);
+            pnlLogin.Controls.Add(txtSalary);
             pnlLogin.Controls.Add(label1);
-            pnlLogin.Controls.Add(txtUsername);
+            pnlLogin.Controls.Add(txtPosition);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
             pnlLogin.Margin = new Padding(2);
@@ -76,14 +76,14 @@
             label2.TabIndex = 4;
             label2.Text = "Salary";
             // 
-            // txtPassword
+            // txtSalary
             // 
-            txtPassword.BackColor = Color.Azure;
-            txtPassword.Location = new Point(56, 119);
-            txtPassword.Margin = new Padding(2);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(238, 23);
-            txtPassword.TabIndex = 3;
+            txtSalary.BackColor = Color.Azure;
+            txtSalary.Location = new Point(56, 119);
+            txtSalary.Margin = new Padding(2);
+            txtSalary.Name = "txtPassword";
+            txtSalary.Size = new Size(238, 23);
+            txtSalary.TabIndex = 3;
             // 
             // label1
             // 
@@ -96,14 +96,14 @@
             label1.TabIndex = 2;
             label1.Text = "Add Position";
             // 
-            // txtUsername
+            // txtPosition
             // 
-            txtUsername.BackColor = Color.Azure;
-            txtUsername.Location = new Point(56, 79);
-            txtUsername.Margin = new Padding(2);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(238, 23);
-            txtUsername.TabIndex = 1;
+            txtPosition.BackColor = Color.Azure;
+            txtPosition.Location = new Point(56, 79);
+            txtPosition.Margin = new Padding(2);
+            txtPosition.Name = "txtPosition";
+            txtPosition.Size = new Size(238, 23);
+            txtPosition.TabIndex = 1;
             // 
             // AddPosition
             // 
@@ -124,8 +124,8 @@
         private Panel pnlLogin;
         private Button btnLogin;
         private Label label2;
-        private TextBox txtPassword;
+        private TextBox txtSalary;
         private Label label1;
-        private TextBox txtUsername;
+        private TextBox txtPosition;
     }
 }

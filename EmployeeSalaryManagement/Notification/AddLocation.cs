@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +19,14 @@ namespace EmployeeSalaryManagement.Notification
 
         private void AddingLoc(object sender, EventArgs e)
         {
+            var db = new SalaryDbContext();
+            var location = new Location
+            {
+                LocationName = txtLocation.Text,
+                LocationAddress = txtAddress.Text
+            };
+            db.Locations.Add(location);
+            db.SaveChanges();
             this.Hide();
         }
     }

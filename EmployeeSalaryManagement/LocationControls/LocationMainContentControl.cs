@@ -1,4 +1,6 @@
-﻿using EmployeeSalaryManagement.Notification;
+﻿using EmployeeSalaryManagement.Card;
+using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.Notification;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,48 +13,59 @@ namespace EmployeeSalaryManagement.LocationControls
 {
     public partial class LocationMainContentControl : UserControl
     {
+
         public LocationMainContentControl()
         {
             InitializeComponent();
+            LoadLocations();
         }
         private void LoadControl(UserControl uc)
         {
-            LocationMainContent.Controls.Clear();   // remove old page
-            uc.Dock = DockStyle.Fill;     // fill panel
-            LocationMainContent.Controls.Add(uc);   // add new page
+            LocationMainContent.Controls.Clear();
+            uc.Dock = DockStyle.Fill;
+            LocationMainContent.Controls.Add(uc);
         }
-
-        private void DowntownClick(object sender, EventArgs e)
+        public void LoadLocations()
         {
-            LoadControl(new DowntownOfficeControl());
+            flpLocation.Controls.Clear();
+
+            using (var context = new SalaryDbContext())
+            {
+                var locations = context.Locations.ToList();
+
+                foreach (var loc in locations)
+                {
+                    var positionIdsForThisLocation = context.Positions
+            .Where(p => p.LocationId == loc.LocationId)
+            .Select(p => p.PositionId)
+            .ToList();
+
+                    int positionCount = positionIdsForThisLocation.Count;
+
+                    int totalEmployeeCount = context.Employees
+                        .Count(e => positionIdsForThisLocation.Contains(e.PositionId));
+                    var card = new LocationCardControl();
+                    card.lblLocation.Text = loc.LocationName;
+                    card.lblAdress.Text = loc.LocationAddress;
+                    card.lblJobs.Text = $"Jobs: {positionCount}";
+                    card.lblEmployees.Text = $"Employees: {totalEmployeeCount}";
+
+                    int currentId = loc.LocationId;
+                    string currentName = loc.LocationName;
+
+                    card.CardClicked += (s, e) => {
+                        LoadControl(new DowntownOfficeControl(currentId, currentName));
+                    };
+
+                    flpLocation.Controls.Add(card);
+                }
+            }
         }
-
-
-
         private void AddLocationClick(object sender, EventArgs e)
         {
             AddLocation location = new AddLocation();
-            location.Show();
-        }
-
-        private void WarehouseClick(object sender, EventArgs e)
-        {
-            LoadControl(new DowntownOfficeControl());
-        }
-
-        private void TechClick(object sender, EventArgs e)
-        {
-            LoadControl(new DowntownOfficeControl());
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void PnlLocation(object sender, EventArgs e)
-        {
-            LoadControl(new DowntownOfficeControl());
+            location.ShowDialog();
+            LoadLocations();
         }
     }
 }
