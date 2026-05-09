@@ -19,10 +19,5 @@ namespace EmployeeSalaryManagement.Notification
         {
             this.Hide();
         }
-
-        private void pnlLogin_ParentChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
