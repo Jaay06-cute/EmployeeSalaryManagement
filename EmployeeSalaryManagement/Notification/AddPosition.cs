@@ -1,4 +1,8 @@
-﻿using System;
+﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.LocationControls;
+using EmployeeSalaryManagement.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +14,24 @@ namespace EmployeeSalaryManagement.Notification
 {
     public partial class AddPosition : Form
     {
-        public AddPosition()
+        private int _locationID;
+        public AddPosition(int locationID)
         {
             InitializeComponent();
+            _locationID = locationID;
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
+            IPositionRepository repo = new PositionRepository(new SalaryDbContext());
+            var position = new Model.Position
+            {
+                WorkPosition = txtPosition.Text,
+                Salary = (double)decimal.Parse(txtSalary.Text),
+                LocationId = _locationID
+            };
+            await repo.AddAsync(position);
+            await repo.SaveAsync();
             this.Hide();
         }
     }

@@ -31,9 +31,9 @@
             pnlLogin = new Panel();
             btnLogin = new Button();
             label2 = new Label();
-            txtPassword = new TextBox();
+            txtAddress = new TextBox();
             label1 = new Label();
-            txtUsername = new TextBox();
+            txtLocation = new TextBox();
             pnlLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -41,26 +41,25 @@
             // 
             pnlLogin.Controls.Add(btnLogin);
             pnlLogin.Controls.Add(label2);
-            pnlLogin.Controls.Add(txtPassword);
+            pnlLogin.Controls.Add(txtAddress);
             pnlLogin.Controls.Add(label1);
-            pnlLogin.Controls.Add(txtUsername);
+            pnlLogin.Controls.Add(txtLocation);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
-            pnlLogin.Margin = new Padding(2, 2, 2, 2);
+            pnlLogin.Margin = new Padding(2, 3, 2, 3);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(335, 266);
+            pnlLogin.Size = new Size(383, 355);
             pnlLogin.TabIndex = 2;
-            pnlLogin.ParentChanged += pnlLogin_ParentChanged;
             // 
             // btnLogin
             // 
             btnLogin.BackColor = SystemColors.ActiveCaption;
             btnLogin.BackgroundImageLayout = ImageLayout.Zoom;
             btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(89, 146);
-            btnLogin.Margin = new Padding(2, 2, 2, 2);
+            btnLogin.Location = new Point(102, 195);
+            btnLogin.Margin = new Padding(2, 3, 2, 3);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(162, 20);
+            btnLogin.Size = new Size(185, 27);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "+ Add Location";
             btnLogin.UseVisualStyleBackColor = false;
@@ -70,49 +69,49 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(56, 105);
+            label2.Location = new Point(64, 140);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(49, 13);
+            label2.Size = new Size(63, 19);
             label2.TabIndex = 4;
             label2.Text = "Address";
             // 
-            // txtPassword
+            // txtAddress
             // 
-            txtPassword.BackColor = Color.Azure;
-            txtPassword.Location = new Point(56, 119);
-            txtPassword.Margin = new Padding(2, 2, 2, 2);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(238, 23);
-            txtPassword.TabIndex = 3;
+            txtAddress.BackColor = Color.Azure;
+            txtAddress.Location = new Point(64, 159);
+            txtAddress.Margin = new Padding(2, 3, 2, 3);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(271, 27);
+            txtAddress.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(56, 64);
+            label1.Location = new Point(64, 85);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(86, 13);
+            label1.Size = new Size(110, 19);
             label1.TabIndex = 2;
             label1.Text = "Location Name";
             // 
-            // txtUsername
+            // txtLocation
             // 
-            txtUsername.BackColor = Color.Azure;
-            txtUsername.Location = new Point(56, 79);
-            txtUsername.Margin = new Padding(2, 2, 2, 2);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(238, 23);
-            txtUsername.TabIndex = 1;
+            txtLocation.BackColor = Color.Azure;
+            txtLocation.Location = new Point(64, 105);
+            txtLocation.Margin = new Padding(2, 3, 2, 3);
+            txtLocation.Name = "txtLocation";
+            txtLocation.Size = new Size(271, 27);
+            txtLocation.TabIndex = 1;
             // 
             // AddLocation
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(335, 266);
+            ClientSize = new Size(383, 355);
             Controls.Add(pnlLogin);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2, 3, 2, 3);
             MaximizeBox = false;
             Name = "AddLocation";
             StartPosition = FormStartPosition.CenterScreen;
@@ -127,8 +126,8 @@
         private Panel pnlLogin;
         private Button btnLogin;
         private Label label2;
-        private TextBox txtPassword;
+        private TextBox txtAddress;
         private Label label1;
-        private TextBox txtUsername;
+        private TextBox txtLocation;
     }
 }

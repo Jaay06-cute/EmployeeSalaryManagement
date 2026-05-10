@@ -13,6 +13,22 @@ namespace EmployeeSalaryManagement.Card
         public PositionCard()
         {
             InitializeComponent();
+            AssignClickEvent(this);
+        }
+        private void AssignClickEvent(Control container)
+        {
+            foreach (Control c in container.Controls)
+            {
+                c.Click += (s, e) => this.OnHeaderClick(e);
+                if (c.HasChildren) AssignClickEvent(c);
+            }
+        }
+
+        public event EventHandler CardClicked;
+
+        protected virtual void OnHeaderClick(EventArgs e)
+        {
+            CardClicked?.Invoke(this, e);
         }
     }
 }

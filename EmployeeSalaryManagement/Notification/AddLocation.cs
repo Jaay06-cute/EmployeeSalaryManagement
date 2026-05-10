@@ -1,4 +1,8 @@
-﻿using System;
+﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.Model;
+using EmployeeSalaryManagement.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,14 +19,17 @@ namespace EmployeeSalaryManagement.Notification
             InitializeComponent();
         }
 
-        private void AddingLoc(object sender, EventArgs e)
+        private async void AddingLoc(object sender, EventArgs e)
         {
+            ILocationRepository repo = new LocationRepository( new SalaryDbContext());
+            var location = new Location
+            {
+                LocationName = txtLocation.Text,
+                LocationAddress = txtAddress.Text
+            };
+            await repo.AddAsync(location);
+            await repo.SaveAsync();
             this.Hide();
-        }
-
-        private void pnlLogin_ParentChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

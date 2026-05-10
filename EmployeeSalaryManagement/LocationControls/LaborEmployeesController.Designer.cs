@@ -42,7 +42,7 @@
             label1 = new Label();
             pictureBox10 = new PictureBox();
             label11 = new Label();
-            label12 = new Label();
+            lblLabor = new Label();
             DowntownContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
@@ -58,22 +58,22 @@
             DowntownContent.Controls.Add(label1);
             DowntownContent.Controls.Add(pictureBox10);
             DowntownContent.Controls.Add(label11);
-            DowntownContent.Controls.Add(label12);
+            DowntownContent.Controls.Add(lblLabor);
             DowntownContent.Dock = DockStyle.Fill;
             DowntownContent.Location = new Point(0, 0);
-            DowntownContent.Margin = new Padding(2, 2, 2, 2);
+            DowntownContent.Margin = new Padding(2, 4, 2, 4);
             DowntownContent.Name = "DowntownContent";
-            DowntownContent.Size = new Size(781, 496);
+            DowntownContent.Size = new Size(1116, 826);
             DowntownContent.TabIndex = 5;
             // 
             // button2
             // 
             button2.BackColor = Color.DarkSlateGray;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(636, 52);
-            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Location = new Point(909, 86);
+            button2.Margin = new Padding(2, 4, 2, 4);
             button2.Name = "button2";
-            button2.Size = new Size(133, 38);
+            button2.Size = new Size(190, 64);
             button2.TabIndex = 13;
             button2.Text = "+ Add Employee";
             button2.UseVisualStyleBackColor = false;
@@ -81,21 +81,21 @@
             // 
             // button1
             // 
-            button1.Location = new Point(657, 121);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Location = new Point(939, 201);
+            button1.Margin = new Padding(2, 4, 2, 4);
             button1.Name = "button1";
-            button1.Size = new Size(113, 23);
+            button1.Size = new Size(161, 39);
             button1.TabIndex = 12;
             button1.Text = "Search";
             button1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(16, 121);
-            textBox1.Margin = new Padding(2, 2, 2, 2);
+            textBox1.Location = new Point(22, 201);
+            textBox1.Margin = new Padding(2, 4, 2, 4);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search by name.....";
-            textBox1.Size = new Size(624, 23);
+            textBox1.Size = new Size(890, 31);
             textBox1.TabIndex = 11;
             // 
             // dataGridView1
@@ -104,16 +104,18 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
             dataGridView1.GridColor = Color.White;
-            dataGridView1.Location = new Point(16, 158);
-            dataGridView1.Margin = new Padding(2, 2, 2, 2);
+            dataGridView1.Location = new Point(22, 264);
+            dataGridView1.Margin = new Padding(2, 4, 2, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(753, 318);
+            dataGridView1.Size = new Size(1076, 530);
             dataGridView1.TabIndex = 10;
+            dataGridView1.Click += gridClick;
             // 
             // Column1
             // 
+            Column1.DataPropertyName = "ID";
             Column1.HeaderText = "EMPLOYEE ID";
             Column1.MinimumWidth = 8;
             Column1.Name = "Column1";
@@ -121,6 +123,7 @@
             // 
             // Column2
             // 
+            Column2.DataPropertyName = "Name";
             Column2.HeaderText = "FULL NAME";
             Column2.MinimumWidth = 8;
             Column2.Name = "Column2";
@@ -128,6 +131,7 @@
             // 
             // Column3
             // 
+            Column3.DataPropertyName = "Salary";
             Column3.HeaderText = "SALARY";
             Column3.MinimumWidth = 8;
             Column3.Name = "Column3";
@@ -152,10 +156,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(57, 20);
+            label1.Location = new Point(81, 34);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(133, 18);
+            label1.Size = new Size(201, 27);
             label1.TabIndex = 9;
             label1.Text = "Back to Locations";
             label1.Click += BackClick;
@@ -163,10 +167,10 @@
             // pictureBox10
             // 
             pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(20, 16);
-            pictureBox10.Margin = new Padding(2, 2, 2, 2);
+            pictureBox10.Location = new Point(29, 26);
+            pictureBox10.Margin = new Padding(2, 4, 2, 4);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(32, 28);
+            pictureBox10.Size = new Size(46, 46);
             pictureBox10.TabIndex = 9;
             pictureBox10.TabStop = false;
             pictureBox10.Click += BackArrowClick;
@@ -176,32 +180,32 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.FromArgb(64, 64, 64);
-            label11.Location = new Point(18, 81);
+            label11.Location = new Point(26, 135);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(143, 21);
+            label11.Size = new Size(221, 32);
             label11.TabIndex = 7;
             label11.Text = "0 employees found";
             // 
-            // label12
+            // lblLabor
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(18, 52);
-            label12.Margin = new Padding(2, 0, 2, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(231, 32);
-            label12.TabIndex = 6;
-            label12.Text = "Laborer Employees";
+            lblLabor.AutoSize = true;
+            lblLabor.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLabor.Location = new Point(26, 86);
+            lblLabor.Margin = new Padding(2, 0, 2, 0);
+            lblLabor.Name = "lblLabor";
+            lblLabor.Size = new Size(337, 48);
+            lblLabor.TabIndex = 6;
+            lblLabor.Text = "Laborer Employees";
             // 
             // LaborEmployeesController
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(DowntownContent);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2, 4, 2, 4);
             Name = "LaborEmployeesController";
-            Size = new Size(781, 496);
+            Size = new Size(1116, 826);
             DowntownContent.ResumeLayout(false);
             DowntownContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -218,7 +222,7 @@
         private Label label1;
         private PictureBox pictureBox10;
         private Label label11;
-        private Label label12;
+        private Label lblLabor;
         private Button button2;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;

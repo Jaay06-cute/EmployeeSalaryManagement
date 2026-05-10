@@ -1,3 +1,5 @@
+using EmployeeSalaryManagement.EmployeeManagementDbContext;
+
 namespace EmployeeSalaryManagement
 {
     internal static class Program
@@ -8,8 +10,10 @@ namespace EmployeeSalaryManagement
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            using (var context = new SalaryDbContext())
+            {
+                context.Database.EnsureCreated();
+            }
             ApplicationConfiguration.Initialize();
             Application.Run(new LoginForm());
         }
