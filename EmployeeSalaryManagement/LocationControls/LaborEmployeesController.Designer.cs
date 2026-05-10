@@ -61,19 +61,19 @@
             DowntownContent.Controls.Add(lblLabor);
             DowntownContent.Dock = DockStyle.Fill;
             DowntownContent.Location = new Point(0, 0);
-            DowntownContent.Margin = new Padding(2, 3, 2, 3);
+            DowntownContent.Margin = new Padding(2, 4, 2, 4);
             DowntownContent.Name = "DowntownContent";
-            DowntownContent.Size = new Size(893, 661);
+            DowntownContent.Size = new Size(1116, 826);
             DowntownContent.TabIndex = 5;
             // 
             // button2
             // 
             button2.BackColor = Color.DarkSlateGray;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(727, 69);
-            button2.Margin = new Padding(2, 3, 2, 3);
+            button2.Location = new Point(909, 86);
+            button2.Margin = new Padding(2, 4, 2, 4);
             button2.Name = "button2";
-            button2.Size = new Size(152, 51);
+            button2.Size = new Size(190, 64);
             button2.TabIndex = 13;
             button2.Text = "+ Add Employee";
             button2.UseVisualStyleBackColor = false;
@@ -81,21 +81,21 @@
             // 
             // button1
             // 
-            button1.Location = new Point(751, 161);
-            button1.Margin = new Padding(2, 3, 2, 3);
+            button1.Location = new Point(939, 201);
+            button1.Margin = new Padding(2, 4, 2, 4);
             button1.Name = "button1";
-            button1.Size = new Size(129, 31);
+            button1.Size = new Size(161, 39);
             button1.TabIndex = 12;
             button1.Text = "Search";
             button1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(18, 161);
-            textBox1.Margin = new Padding(2, 3, 2, 3);
+            textBox1.Location = new Point(22, 201);
+            textBox1.Margin = new Padding(2, 4, 2, 4);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search by name.....";
-            textBox1.Size = new Size(713, 27);
+            textBox1.Size = new Size(890, 31);
             textBox1.TabIndex = 11;
             // 
             // dataGridView1
@@ -104,13 +104,14 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
             dataGridView1.GridColor = Color.White;
-            dataGridView1.Location = new Point(18, 211);
-            dataGridView1.Margin = new Padding(2, 3, 2, 3);
+            dataGridView1.Location = new Point(22, 264);
+            dataGridView1.Margin = new Padding(2, 4, 2, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(861, 424);
+            dataGridView1.Size = new Size(1076, 530);
             dataGridView1.TabIndex = 10;
+            dataGridView1.Click += gridClick;
             // 
             // Column1
             // 
@@ -155,10 +156,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(65, 27);
+            label1.Location = new Point(81, 34);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(167, 23);
+            label1.Size = new Size(201, 27);
             label1.TabIndex = 9;
             label1.Text = "Back to Locations";
             label1.Click += BackClick;
@@ -166,10 +167,10 @@
             // pictureBox10
             // 
             pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(23, 21);
-            pictureBox10.Margin = new Padding(2, 3, 2, 3);
+            pictureBox10.Location = new Point(29, 26);
+            pictureBox10.Margin = new Padding(2, 4, 2, 4);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(37, 37);
+            pictureBox10.Size = new Size(46, 46);
             pictureBox10.TabIndex = 9;
             pictureBox10.TabStop = false;
             pictureBox10.Click += BackArrowClick;
@@ -179,10 +180,10 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.FromArgb(64, 64, 64);
-            label11.Location = new Point(21, 108);
+            label11.Location = new Point(26, 135);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(179, 28);
+            label11.Size = new Size(221, 32);
             label11.TabIndex = 7;
             label11.Text = "0 employees found";
             // 
@@ -190,21 +191,21 @@
             // 
             lblLabor.AutoSize = true;
             lblLabor.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLabor.Location = new Point(21, 69);
+            lblLabor.Location = new Point(26, 86);
             lblLabor.Margin = new Padding(2, 0, 2, 0);
             lblLabor.Name = "lblLabor";
-            lblLabor.Size = new Size(284, 41);
+            lblLabor.Size = new Size(337, 48);
             lblLabor.TabIndex = 6;
             lblLabor.Text = "Laborer Employees";
             // 
             // LaborEmployeesController
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(DowntownContent);
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(2, 4, 2, 4);
             Name = "LaborEmployeesController";
-            Size = new Size(893, 661);
+            Size = new Size(1116, 826);
             DowntownContent.ResumeLayout(false);
             DowntownContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

@@ -69,5 +69,15 @@ namespace EmployeeSalaryManagement.LocationControls
                 MessageBox.Show("Error loading employees: " + ex.Message);
             }
         }
+
+       
+        
+
+        //VIEW NI SYA SA EMPLOYEE IKAW LNG NAVIGATE SA EACH EMPLOYTEE EVERY CLICK CELL
+        private void gridClick(object sender, EventArgs e)
+        {
+            ViewEmployee employee = new ViewEmployee();
+            employee.Show();
+        }
     }
 }
