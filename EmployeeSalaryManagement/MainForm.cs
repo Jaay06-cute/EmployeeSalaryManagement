@@ -68,6 +68,11 @@ namespace EmployeeSalaryManagement
         {
 
         }
+
+        private void btnAttendance_Click(object sender, EventArgs e)
+        {
+            LoadForm(new AttendanceControl());
+        }
     }
 }
 

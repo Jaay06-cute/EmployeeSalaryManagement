@@ -33,6 +33,8 @@
             lblAdress = new Label();
             lblLocation = new Label();
             button1 = new Button();
+            label2 = new Label();
+            comboBox1 = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -93,10 +95,33 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial Narrow", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(622, 13);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 24);
+            label2.TabIndex = 8;
+            label2.Text = "-$50";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(7, 9);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(182, 33);
+            comboBox1.TabIndex = 9;
+            comboBox1.Text = "Date";
+            // 
             // ViewEmployeeTransactionControl
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(comboBox1);
+            Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(panel1);
             Name = "ViewEmployeeTransactionControl";
@@ -104,6 +129,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -113,5 +139,7 @@
         public Label label1;
         public Label lblAdress;
         public Label lblLocation;
+        public Label label2;
+        private ComboBox comboBox1;
     }
 }

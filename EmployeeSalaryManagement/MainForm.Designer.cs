@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             pnlSide = new Panel();
+            btnAttendance = new Button();
             btnSignout = new Button();
             btnSettings = new Button();
             btnArchive = new Button();
@@ -44,6 +45,7 @@
             // pnlSide
             // 
             pnlSide.BackColor = Color.DarkSlateGray;
+            pnlSide.Controls.Add(btnAttendance);
             pnlSide.Controls.Add(btnSignout);
             pnlSide.Controls.Add(btnSettings);
             pnlSide.Controls.Add(btnArchive);
@@ -55,6 +57,21 @@
             pnlSide.Name = "pnlSide";
             pnlSide.Size = new Size(365, 844);
             pnlSide.TabIndex = 0;
+            // 
+            // btnAttendance
+            // 
+            btnAttendance.BackColor = Color.DarkSlateGray;
+            btnAttendance.FlatAppearance.BorderSize = 0;
+            btnAttendance.FlatStyle = FlatStyle.Flat;
+            btnAttendance.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAttendance.ForeColor = Color.White;
+            btnAttendance.Location = new Point(-6, 356);
+            btnAttendance.Name = "btnAttendance";
+            btnAttendance.Size = new Size(365, 73);
+            btnAttendance.TabIndex = 7;
+            btnAttendance.Text = "Attendance";
+            btnAttendance.UseVisualStyleBackColor = false;
+            btnAttendance.Click += btnAttendance_Click;
             // 
             // btnSignout
             // 
@@ -78,7 +95,7 @@
             btnSettings.FlatStyle = FlatStyle.Flat;
             btnSettings.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSettings.ForeColor = Color.White;
-            btnSettings.Location = new Point(0, 486);
+            btnSettings.Location = new Point(0, 561);
             btnSettings.Name = "btnSettings";
             btnSettings.Size = new Size(365, 73);
             btnSettings.TabIndex = 5;
@@ -93,7 +110,7 @@
             btnArchive.FlatStyle = FlatStyle.Flat;
             btnArchive.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnArchive.ForeColor = Color.White;
-            btnArchive.Location = new Point(1, 422);
+            btnArchive.Location = new Point(1, 494);
             btnArchive.Name = "btnArchive";
             btnArchive.Size = new Size(365, 73);
             btnArchive.TabIndex = 4;
@@ -108,7 +125,7 @@
             btnLocation.FlatStyle = FlatStyle.Flat;
             btnLocation.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLocation.ForeColor = Color.White;
-            btnLocation.Location = new Point(0, 353);
+            btnLocation.Location = new Point(0, 422);
             btnLocation.Name = "btnLocation";
             btnLocation.Size = new Size(365, 73);
             btnLocation.TabIndex = 3;
@@ -178,5 +195,6 @@
         private Button btnArchive;
         private Button btnLocation;
         private Panel pnlMain;
+        private Button btnAttendance;
     }
 }
