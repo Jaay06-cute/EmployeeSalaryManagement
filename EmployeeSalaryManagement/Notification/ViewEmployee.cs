@@ -1,4 +1,8 @@
-﻿using EmployeeSalaryManagement.LocationControls;
+﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.LocationControls;
+using EmployeeSalaryManagement.Model;
+using EmployeeSalaryManagement.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,39 +15,41 @@ namespace EmployeeSalaryManagement.Notification
 {
     public partial class ViewEmployee : Form
     {
-        public ViewEmployee()
+        private int _employeeId;
+        private readonly IEmployeeRepository _employeeRepo = new EmployeeRepository(new SalaryDbContext());
+        public ViewEmployee(int employeeId)
         {
             InitializeComponent();
-            LoadControl(new ViewEmployeeAttendanceControl());
+            _employeeId = employeeId;
+            LoadControl(new ViewEmployeeAttendanceControl(_employeeId));
+            lblName.Text = _employeeRepo.GetNameByIdAsync(employeeId).Result;
+            lblID.Text = "ID - " + employeeId.ToString();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoadControl(UserControl uc)
         {
             MainContentView.Controls.Clear();
             uc.Dock = DockStyle.Fill;
             MainContentView.Controls.Add(uc);
         }
-
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
 
-            LoadControl(new ViewEmployeeTransactionControl());
+            LoadControl(new ViewEmployeeTransactionControl(_employeeId));
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoadControl(new ViewEmployeeAttendanceControl());
+            LoadControl(new ViewEmployeeAttendanceControl(_employeeId));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var employee = new Employee
+            {
+                isDeleted = true
+            };
+            _employeeRepo.SoftDeleteAsync(employee, _employeeId);
+            MessageBox.Show("Employee Deleted Successfully");
         }
     }
 }

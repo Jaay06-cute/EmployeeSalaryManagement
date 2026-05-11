@@ -1,5 +1,6 @@
 ﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
 using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.Model;
 using EmployeeSalaryManagement.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace EmployeeSalaryManagement
 {
     public partial class DashboardControl : UserControl
     {
+        private readonly ICheckoutRepository _checkoutRepository = new CheckoutRepository(new SalaryDbContext());
+        private readonly IEmployeeRepository _employee = new EmployeeRepository(new SalaryDbContext());
         public DashboardControl()
         {
             InitializeComponent();
@@ -20,10 +23,23 @@ namespace EmployeeSalaryManagement
         }
         private async void Info()
         {
-            IEmployeeRepository employee = new EmployeeRepository(new SalaryDbContext());
-            lblEmployee.Text = employee.GetAllAsync().Result.Count().ToString();
-            IPositionRepository position = new PositionRepository(new SalaryDbContext());
-            lblSalary.Text ="P" + await position.GetTotalCompanyPayrollAsync();
+            var transactions = await _checkoutRepository.GetAllTransactionsAsync();
+            double montly = await _checkoutRepository.GetTotalTransactionAmountThisMonthAsync();
+            double amount = await _employee.GetTotalEmployeeBalanceAsync();
+            double tramsactionCount = await _checkoutRepository.GetTransactionCountThisMonthAsync();
+            lblEmployee.Text = _employee.GetAllEmployeesAsync().Result.Count().ToString();
+            lblSalary.Text = "P" + montly.ToString();
+            lblBalance.Text = "P" + amount.ToString();
+            lblCount.Text = tramsactionCount.ToString();
+            dataGridView2.DataSource = transactions.Select(c => new
+            {
+                ID = c.EmployeeId,
+                Location = c.Employee?.Position?.Location?.LocationName ?? "N/A",
+                Name = c.Employee?.EmployeeName ?? "Unknown",
+                Position = c.Employee?.Position?.WorkPosition ?? "N/A",
+                TransactionType = c.TransactionType,
+                Amount = c.Amount,
+            }).ToList();
         }
     }
 }

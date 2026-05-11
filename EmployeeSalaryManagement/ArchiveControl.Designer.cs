@@ -32,7 +32,7 @@
             label10 = new Label();
             label1 = new Label();
             DowntownContent = new Panel();
-            label3 = new Label();
+            lblList = new Label();
             label2 = new Label();
             dataGridView2 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -55,8 +55,9 @@
             TopBar.Controls.Add(label1);
             TopBar.Dock = DockStyle.Top;
             TopBar.Location = new Point(0, 0);
+            TopBar.Margin = new Padding(2);
             TopBar.Name = "TopBar";
-            TopBar.Size = new Size(1113, 130);
+            TopBar.Size = new Size(890, 104);
             TopBar.TabIndex = 4;
             // 
             // label10
@@ -64,9 +65,10 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.FromArgb(64, 64, 64);
-            label10.Location = new Point(27, 87);
+            label10.Location = new Point(22, 70);
+            label10.Margin = new Padding(2, 0, 2, 0);
             label10.Name = "label10";
-            label10.Size = new Size(425, 32);
+            label10.Size = new Size(344, 28);
             label10.TabIndex = 3;
             label10.Text = "View and manage archived employees";
             // 
@@ -74,48 +76,51 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(27, 42);
+            label1.Location = new Point(22, 34);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(173, 48);
+            label1.Size = new Size(147, 41);
             label1.TabIndex = 0;
             label1.Text = "ARCHIVE";
             // 
             // DowntownContent
             // 
             DowntownContent.BackColor = Color.Azure;
-            DowntownContent.Controls.Add(label3);
+            DowntownContent.Controls.Add(lblList);
             DowntownContent.Controls.Add(label2);
             DowntownContent.Controls.Add(dataGridView2);
             DowntownContent.Controls.Add(button3);
             DowntownContent.Controls.Add(textBox2);
             DowntownContent.Dock = DockStyle.Fill;
-            DowntownContent.Location = new Point(0, 130);
+            DowntownContent.Location = new Point(0, 104);
+            DowntownContent.Margin = new Padding(2);
             DowntownContent.Name = "DowntownContent";
-            DowntownContent.Size = new Size(1113, 714);
+            DowntownContent.Size = new Size(890, 571);
             DowntownContent.TabIndex = 6;
             // 
-            // label3
+            // lblList
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(141, 668);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 32);
-            label3.TabIndex = 14;
-            label3.Text = "00";
+            lblList.AutoSize = true;
+            lblList.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblList.ForeColor = Color.FromArgb(64, 64, 64);
+            lblList.Location = new Point(133, 534);
+            lblList.Margin = new Padding(2, 0, 2, 0);
+            lblList.Name = "lblList";
+            lblList.Size = new Size(36, 28);
+            lblList.TabIndex = 14;
+            lblList.Text = "00";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(17, 668);
+            label2.Location = new Point(14, 534);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(133, 28);
+            label2.Size = new Size(116, 23);
             label2.TabIndex = 4;
             label2.Text = "Total Archive: ";
-            label2.Click += label2_Click;
             // 
             // dataGridView2
             // 
@@ -123,16 +128,19 @@
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column2, Column4, Column5, Column6 });
             dataGridView2.GridColor = Color.White;
-            dataGridView2.Location = new Point(17, 6);
+            dataGridView2.Location = new Point(14, 5);
+            dataGridView2.Margin = new Padding(2);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersVisible = false;
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridView2.Size = new Size(1079, 600);
+            dataGridView2.Size = new Size(863, 480);
             dataGridView2.TabIndex = 13;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // Column1
             // 
+            Column1.DataPropertyName = "ID";
             Column1.DividerWidth = 1;
             Column1.HeaderText = "ID";
             Column1.MinimumWidth = 8;
@@ -143,6 +151,7 @@
             // 
             // Column3
             // 
+            Column3.DataPropertyName = "Location";
             Column3.DividerWidth = 1;
             Column3.HeaderText = "Location";
             Column3.MinimumWidth = 8;
@@ -153,6 +162,7 @@
             // 
             // Column2
             // 
+            Column2.DataPropertyName = "Name";
             Column2.DividerWidth = 1;
             Column2.HeaderText = "Name";
             Column2.MinimumWidth = 8;
@@ -163,6 +173,7 @@
             // 
             // Column4
             // 
+            Column4.DataPropertyName = "Position";
             Column4.DividerWidth = 1;
             Column4.HeaderText = "Position";
             Column4.MinimumWidth = 8;
@@ -189,30 +200,33 @@
             // 
             // button3
             // 
-            button3.Location = new Point(935, 622);
+            button3.Location = new Point(748, 498);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
-            button3.Size = new Size(161, 33);
+            button3.Size = new Size(129, 26);
             button3.TabIndex = 12;
             button3.Text = "Search";
             button3.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(17, 624);
+            textBox2.Location = new Point(14, 499);
+            textBox2.Margin = new Padding(2);
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Search archived employees.....";
-            textBox2.Size = new Size(912, 31);
+            textBox2.Size = new Size(730, 27);
             textBox2.TabIndex = 11;
             // 
             // ArchiveControl
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             Controls.Add(DowntownContent);
             Controls.Add(TopBar);
+            Margin = new Padding(2);
             Name = "ArchiveControl";
-            Size = new Size(1113, 844);
+            Size = new Size(890, 675);
             TopBar.ResumeLayout(false);
             TopBar.PerformLayout();
             DowntownContent.ResumeLayout(false);
@@ -231,7 +245,7 @@
         private TextBox textBox2;
         private Label label2;
         private DataGridView dataGridView2;
-        private Label label3;
+        public Label lblList;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column2;

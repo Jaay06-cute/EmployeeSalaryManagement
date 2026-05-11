@@ -32,27 +32,27 @@
             MainContent = new Panel();
             dataGridView2 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             label9 = new Label();
             panel5 = new Panel();
             pictureBox5 = new PictureBox();
-            label11 = new Label();
+            lblCount = new Label();
             label12 = new Label();
             panel3 = new Panel();
             pictureBox3 = new PictureBox();
-            this.lblSalary = new Label();
+            this.lblBalance = new Label();
             label7 = new Label();
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
-            Salary = new Label();
+            lblSalary = new Label();
             label5 = new Label();
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
-            this.lblEmployee = new Label();
+            lblEmployee = new Label();
             label2 = new Label();
             TopBar = new Panel();
             dataGridView1 = new DataGridView();
@@ -83,85 +83,69 @@
             MainContent.Controls.Add(panel1);
             MainContent.Dock = DockStyle.Fill;
             MainContent.Location = new Point(0, 0);
-            MainContent.Margin = new Padding(2, 2, 2, 2);
+            MainContent.Margin = new Padding(2);
             MainContent.Name = "MainContent";
             MainContent.Size = new Size(890, 675);
             MainContent.TabIndex = 0;
             // 
             // dataGridView2
             // 
-            dataGridView2.BackgroundColor = Color.White;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column2, Column4, Column5, Column6 });
-            dataGridView2.GridColor = Color.White;
-            dataGridView2.Location = new Point(15, 368);
-            dataGridView2.Margin = new Padding(2, 2, 2, 2);
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
+            dataGridView2.Location = new Point(15, 365);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersVisible = false;
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(863, 294);
             dataGridView2.TabIndex = 6;
             // 
             // Column1
             // 
-            Column1.DividerWidth = 1;
+            Column1.DataPropertyName = "ID";
             Column1.HeaderText = "ID";
-            Column1.MinimumWidth = 8;
+            Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Resizable = DataGridViewTriState.False;
             Column1.Width = 125;
-            // 
-            // Column3
-            // 
-            Column3.DividerWidth = 1;
-            Column3.HeaderText = "Location";
-            Column3.MinimumWidth = 8;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Resizable = DataGridViewTriState.False;
-            Column3.Width = 200;
             // 
             // Column2
             // 
-            Column2.DividerWidth = 1;
+            Column2.DataPropertyName = "Name";
             Column2.HeaderText = "Name";
-            Column2.MinimumWidth = 8;
+            Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Resizable = DataGridViewTriState.False;
-            Column2.Width = 250;
+            Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            Column3.DataPropertyName = "Location";
+            Column3.HeaderText = "Location";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            Column3.Width = 125;
             // 
             // Column4
             // 
-            Column4.DividerWidth = 1;
+            Column4.DataPropertyName = "Position";
             Column4.HeaderText = "Position";
-            Column4.MinimumWidth = 8;
+            Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Resizable = DataGridViewTriState.False;
-            Column4.Width = 150;
+            Column4.Width = 125;
             // 
             // Column5
             // 
-            Column5.DividerWidth = 1;
+            Column5.DataPropertyName = "TransactionType";
             Column5.HeaderText = "Transaction Type";
-            Column5.MinimumWidth = 8;
+            Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Resizable = DataGridViewTriState.False;
-            Column5.Width = 200;
+            Column5.Width = 175;
             // 
             // Column6
             // 
-            Column6.DividerWidth = 1;
+            Column6.DataPropertyName = "Amount";
             Column6.HeaderText = "Amount";
-            Column6.MinimumWidth = 8;
+            Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            Column6.Resizable = DataGridViewTriState.False;
-            Column6.Width = 126;
+            Column6.Width = 125;
             // 
             // label9
             // 
@@ -180,10 +164,10 @@
             // 
             panel5.BackColor = Color.DarkSlateGray;
             panel5.Controls.Add(pictureBox5);
-            panel5.Controls.Add(label11);
+            panel5.Controls.Add(lblCount);
             panel5.Controls.Add(label12);
             panel5.Location = new Point(678, 116);
-            panel5.Margin = new Padding(2, 2, 2, 2);
+            panel5.Margin = new Padding(2);
             panel5.Name = "panel5";
             panel5.Size = new Size(200, 200);
             panel5.TabIndex = 4;
@@ -192,24 +176,24 @@
             // 
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
             pictureBox5.Location = new Point(18, 13);
-            pictureBox5.Margin = new Padding(2, 2, 2, 2);
+            pictureBox5.Margin = new Padding(2);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(60, 60);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 0;
             pictureBox5.TabStop = false;
             // 
-            // label11
+            // lblCount
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(14, 147);
-            label11.Margin = new Padding(2, 0, 2, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(52, 41);
-            label11.TabIndex = 3;
-            label11.Text = "67";
+            lblCount.AutoSize = true;
+            lblCount.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCount.ForeColor = Color.White;
+            lblCount.Location = new Point(14, 147);
+            lblCount.Margin = new Padding(2, 0, 2, 0);
+            lblCount.Name = "lblCount";
+            lblCount.Size = new Size(52, 41);
+            lblCount.TabIndex = 3;
+            lblCount.Text = "67";
             // 
             // label12
             // 
@@ -227,10 +211,10 @@
             // 
             panel3.BackColor = Color.DarkSlateGray;
             panel3.Controls.Add(pictureBox3);
-            panel3.Controls.Add(this.lblSalary);
+            panel3.Controls.Add(this.lblBalance);
             panel3.Controls.Add(label7);
             panel3.Location = new Point(458, 116);
-            panel3.Margin = new Padding(2, 2, 2, 2);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
             panel3.Size = new Size(200, 200);
             panel3.TabIndex = 5;
@@ -240,24 +224,24 @@
             pictureBox3.ErrorImage = (Image)resources.GetObject("pictureBox3.ErrorImage");
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(17, 13);
-            pictureBox3.Margin = new Padding(2, 2, 2, 2);
+            pictureBox3.Margin = new Padding(2);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(60, 60);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 0;
             pictureBox3.TabStop = false;
             // 
-            // lblSalary
+            // lblBalance
             // 
-            this.lblSalary.AutoSize = true;
-            this.lblSalary.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            this.lblSalary.ForeColor = Color.White;
-            this.lblSalary.Location = new Point(3, 146);
-            this.lblSalary.Margin = new Padding(2, 0, 2, 0);
-            this.lblSalary.Name = "lblSalary";
-            this.lblSalary.Size = new Size(129, 41);
-            this.lblSalary.TabIndex = 3;
-            this.lblSalary.Text = "P89,320";
+            this.lblBalance.AutoSize = true;
+            this.lblBalance.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            this.lblBalance.ForeColor = Color.White;
+            this.lblBalance.Location = new Point(3, 146);
+            this.lblBalance.Margin = new Padding(2, 0, 2, 0);
+            this.lblBalance.Name = "lblBalance";
+            this.lblBalance.Size = new Size(129, 41);
+            this.lblBalance.TabIndex = 3;
+            this.lblBalance.Text = "P89,320";
             // 
             // label7
             // 
@@ -275,10 +259,10 @@
             // 
             panel2.BackColor = Color.DarkSlateGray;
             panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(Salary);
+            panel2.Controls.Add(lblSalary);
             panel2.Controls.Add(label5);
             panel2.Location = new Point(235, 116);
-            panel2.Margin = new Padding(2, 2, 2, 2);
+            panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
             panel2.Size = new Size(200, 200);
             panel2.TabIndex = 4;
@@ -287,25 +271,25 @@
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(18, 13);
-            pictureBox2.Margin = new Padding(2, 2, 2, 2);
+            pictureBox2.Margin = new Padding(2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(60, 60);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
-            // Salary
+            // lblSalary
             // 
-            Salary.AutoSize = true;
-            Salary.BackColor = Color.Transparent;
-            Salary.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Salary.ForeColor = Color.White;
-            Salary.Location = new Point(2, 147);
-            Salary.Margin = new Padding(2, 0, 2, 0);
-            Salary.Name = "Salary";
-            Salary.Size = new Size(137, 41);
-            Salary.TabIndex = 3;
-            Salary.Text = "P 12,450";
+            lblSalary.AutoSize = true;
+            lblSalary.BackColor = Color.Transparent;
+            lblSalary.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSalary.ForeColor = Color.White;
+            lblSalary.Location = new Point(2, 147);
+            lblSalary.Margin = new Padding(2, 0, 2, 0);
+            lblSalary.Name = "lblSalary";
+            lblSalary.Size = new Size(137, 41);
+            lblSalary.TabIndex = 3;
+            lblSalary.Text = "P 12,450";
             // 
             // label5
             // 
@@ -315,19 +299,19 @@
             label5.Location = new Point(2, 122);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(195, 28);
+            label5.Size = new Size(205, 28);
             label5.TabIndex = 3;
-            label5.Text = "Weekly Cash Advance";
+            label5.Text = "Monthly Cash Advance";
             // 
             // panel1
             // 
             panel1.BackColor = Color.DarkSlateGray;
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(this.lblEmployee);
+            panel1.Controls.Add(lblEmployee);
             panel1.Controls.Add(label2);
             panel1.ForeColor = Color.DarkSlateGray;
             panel1.Location = new Point(14, 116);
-            panel1.Margin = new Padding(2, 2, 2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 200);
             panel1.TabIndex = 0;
@@ -336,7 +320,7 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(11, 13);
-            pictureBox1.Margin = new Padding(2, 2, 2, 2);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(60, 60);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -345,16 +329,16 @@
             // 
             // lblEmployee
             // 
-            this.lblEmployee.AutoSize = true;
-            this.lblEmployee.BackColor = Color.Transparent;
-            this.lblEmployee.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            this.lblEmployee.ForeColor = Color.White;
-            this.lblEmployee.Location = new Point(11, 149);
-            this.lblEmployee.Margin = new Padding(2, 0, 2, 0);
-            this.lblEmployee.Name = "lblEmployee";
-            this.lblEmployee.Size = new Size(52, 41);
-            this.lblEmployee.TabIndex = 3;
-            this.lblEmployee.Text = "67";
+            lblEmployee.AutoSize = true;
+            lblEmployee.BackColor = Color.Transparent;
+            lblEmployee.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmployee.ForeColor = Color.White;
+            lblEmployee.Location = new Point(11, 149);
+            lblEmployee.Margin = new Padding(2, 0, 2, 0);
+            lblEmployee.Name = "lblEmployee";
+            lblEmployee.Size = new Size(52, 41);
+            lblEmployee.TabIndex = 3;
+            lblEmployee.Text = "67";
             // 
             // label2
             // 
@@ -377,7 +361,7 @@
             TopBar.Controls.Add(label1);
             TopBar.Dock = DockStyle.Top;
             TopBar.Location = new Point(0, 0);
-            TopBar.Margin = new Padding(2, 2, 2, 2);
+            TopBar.Margin = new Padding(2);
             TopBar.Name = "TopBar";
             TopBar.Size = new Size(890, 104);
             TopBar.TabIndex = 3;
@@ -386,7 +370,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(573, 89);
-            dataGridView1.Margin = new Padding(2, 2, 2, 2);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(6, 6);
@@ -424,7 +408,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(TopBar);
             Controls.Add(MainContent);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "DashboardControl";
             Size = new Size(890, 675);
             MainContent.ResumeLayout(false);
@@ -461,21 +445,21 @@
         private Label label7;
         private Panel panel2;
         private PictureBox pictureBox2;
-        private Label Salary;
+        private Label lblBalance;
         private Label label5;
         private Panel TopBar;
         private Label label10;
         private Label label1;
         private Panel panel5;
         private PictureBox pictureBox5;
-        private Label label11;
+        private Label lblCount;
         private Label label12;
         private DataGridView dataGridView1;
         private Label label9;
         private DataGridView dataGridView2;
         private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;

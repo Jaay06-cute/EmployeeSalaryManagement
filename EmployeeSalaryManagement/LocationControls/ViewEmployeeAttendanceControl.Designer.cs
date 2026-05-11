@@ -42,30 +42,34 @@
             MainContentView.Controls.Add(dataGridView1);
             MainContentView.Dock = DockStyle.Fill;
             MainContentView.Location = new Point(0, 0);
+            MainContentView.Margin = new Padding(2);
             MainContentView.Name = "MainContentView";
-            MainContentView.Size = new Size(878, 392);
+            MainContentView.Size = new Size(702, 314);
             MainContentView.TabIndex = 7;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Date, Status });
-            dataGridView1.Location = new Point(3, 3);
+            dataGridView1.Location = new Point(2, 2);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(875, 389);
+            dataGridView1.Size = new Size(700, 311);
             dataGridView1.TabIndex = 0;
             // 
             // Date
             // 
-            Date.HeaderText = "Attendance";
+            Date.DataPropertyName = "Date";
+            Date.HeaderText = "Date";
             Date.MinimumWidth = 8;
             Date.Name = "Date";
             Date.Width = 270;
             // 
             // Status
             // 
+            Status.DataPropertyName = "Status";
             Status.HeaderText = "Status";
             Status.MinimumWidth = 8;
             Status.Name = "Status";
@@ -73,11 +77,12 @@
             // 
             // ViewEmployeeAttendanceControl
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainContentView);
+            Margin = new Padding(2);
             Name = "ViewEmployeeAttendanceControl";
-            Size = new Size(878, 392);
+            Size = new Size(702, 314);
             MainContentView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

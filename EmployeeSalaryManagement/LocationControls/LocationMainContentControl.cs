@@ -31,11 +31,11 @@ namespace EmployeeSalaryManagement.LocationControls
             flpLocation.Controls.Clear();
             var repo = new LocationRepository(new SalaryDbContext());
             var locations = await repo.GetLocationsWithDetailsAsync();
-
+            var employeeRepo = new EmployeeRepository(new SalaryDbContext());
             foreach (var loc in locations)
             {
                 int positionCount = loc.Positions.Count;
-                int totalEmployeeCount = loc.Positions.Sum(p => p.Employees.Count);
+                string totalEmployeeCount = employeeRepo.GetAllEmployeesAsync().Result.Count().ToString();
 
                 var card = new LocationCardControl();
                 card.lblLocation.Text = loc.LocationName;

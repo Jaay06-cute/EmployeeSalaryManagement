@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection.Emit;
 using System.Text;
 using System.Windows.Forms;
 
@@ -57,11 +58,14 @@ namespace EmployeeSalaryManagement.LocationControls
             try
             {
                 var employees = await _employeeRepo.GetEmployeesByPositionAsync(_PositionId);
+                int count = employees.Count();
+                label11.Text = $"{count} employees found";
                 dataGridView1.DataSource = employees.Select(e => new
                 {
                     ID = e.EmployeeID,
                     Name = e.EmployeeName,
-                    Salary = e.Position.Salary
+                    Salary = e.Position.Salary,
+                    SalaryBalance = e.Balance
                 }).ToList();
             }
             catch (Exception ex)
@@ -69,15 +73,17 @@ namespace EmployeeSalaryManagement.LocationControls
                 MessageBox.Show("Error loading employees: " + ex.Message);
             }
         }
-
-       
-        
-
-        //VIEW NI SYA SA EMPLOYEE IKAW LNG NAVIGATE SA EACH EMPLOYTEE EVERY CLICK CELL
-        private void gridClick(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ViewEmployee employee = new ViewEmployee();
-            employee.Show();
+            if (e.RowIndex >= 0)
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+                dynamic selectedItem = row.DataBoundItem;
+                int employeeId = selectedItem.ID;
+                ViewEmployee employee = new ViewEmployee(employeeId);
+                employee.ShowDialog();
+                Info();
+            }
         }
     }
 }

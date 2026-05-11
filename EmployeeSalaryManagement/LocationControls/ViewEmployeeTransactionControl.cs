@@ -1,4 +1,8 @@
-﻿using EmployeeSalaryManagement.Notification;
+﻿using EmployeeSalaryManagement.Card;
+using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.IRepository;
+using EmployeeSalaryManagement.Notification;
+using EmployeeSalaryManagement.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,15 +15,42 @@ namespace EmployeeSalaryManagement.LocationControls
 {
     public partial class ViewEmployeeTransactionControl : UserControl
     {
-        public ViewEmployeeTransactionControl()
+        private int _employeeID;
+        private readonly IEmployeeRepository _repository = new EmployeeRepository(new SalaryDbContext());
+        public ViewEmployeeTransactionControl(int employeeID)
         {
             InitializeComponent();
+            _employeeID = employeeID;
+            LoadTransactions();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddTransaction addTransaction = new AddTransaction();
-            addTransaction.Show();
+            AddTransaction addTransaction = new AddTransaction(_employeeID);
+            addTransaction.ShowDialog();
+            LoadTransactions();
+        }
+        private async void LoadTransactions()
+        {
+            // 1. Clear existing items
+            floTransaction.Controls.Clear();
+
+            // 2. Fetch data
+            var repo = new CheckoutRepository(new SalaryDbContext());
+            var transactions = await repo.GetByEmployeeIdAsync(_employeeID);
+            var employee = await _repository.GetByIdAsync(_employeeID);
+            lblBalance.Text = $"Current Balance : P{employee.Balance}";
+
+            // 3. Create a card for each transaction
+            foreach (var item in transactions)
+            {
+                var card = new TransactionsCard(item);
+
+                // Make the card stretch to the width of the panel
+                card.Width = floTransaction.Width - 25;
+
+                floTransaction.Controls.Add(card);
+            }
         }
     }
 }
