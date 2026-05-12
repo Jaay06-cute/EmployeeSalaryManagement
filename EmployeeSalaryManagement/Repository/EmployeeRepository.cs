@@ -89,5 +89,37 @@ namespace EmployeeSalaryManagement.Repository
                 .Where(e => e.isDeleted == false)
                 .SumAsync(e => e.Balance);
         }
+        public async Task<IEnumerable<Employee>> SearchEmployeesInPositionAsync(int positionId, string term)
+        {
+            var query = _context.Employees
+                .Include(e => e.Position)
+                .Where(e => e.PositionId == positionId && e.isDeleted == false);
+
+            if (!string.IsNullOrWhiteSpace(term))
+            {
+                query = query.Where(e => e.EmployeeName.ToLower().Contains(term.ToLower()));
+            }
+
+            return await query.ToListAsync();
+        }
+        public async Task<IEnumerable<Employee>> SearchArchivedEmployeesAsync(string term)
+        {
+            var query = _context.Employees
+                .Include(e => e.Position)
+                    .ThenInclude(p => p.Location)
+                .Where(e => e.isDeleted == true); // Only target the Archive
+
+            if (!string.IsNullOrWhiteSpace(term))
+            {
+                string lowerTerm = term.ToLower();
+                query = query.Where(e =>
+                    e.EmployeeName.ToLower().Contains(lowerTerm) ||
+                    (e.Position != null && e.Position.WorkPosition.ToLower().Contains(lowerTerm)) ||
+                    (e.Position != null && e.Position.Location != null && e.Position.Location.LocationName.ToLower().Contains(lowerTerm))
+                );
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

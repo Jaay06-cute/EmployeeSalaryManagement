@@ -37,12 +37,12 @@
             panel1 = new Panel();
             button1 = new Button();
             dataGridView1 = new DataGridView();
-            comboBox1 = new ComboBox();
-            label2 = new Label();
             ID = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewComboBoxColumn();
+            comboBox1 = new ComboBox();
+            label2 = new Label();
             TopBar.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -155,26 +155,7 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(836, 474);
             dataGridView1.TabIndex = 4;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(30, 38);
-            comboBox1.Margin = new Padding(2);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(146, 28);
-            comboBox1.TabIndex = 1;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(30, 15);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(66, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Location";
+            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
             // 
             // ID
             // 
@@ -206,6 +187,26 @@
             Column3.MinimumWidth = 8;
             Column3.Name = "Column3";
             Column3.Width = 250;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(30, 38);
+            comboBox1.Margin = new Padding(2);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(146, 28);
+            comboBox1.TabIndex = 1;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(30, 15);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(66, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Location";
             // 
             // AttendanceControl
             // 

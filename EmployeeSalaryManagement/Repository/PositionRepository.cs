@@ -30,5 +30,24 @@ namespace EmployeeSalaryManagement.Repository
 
             return grandTotal;
         }
+        public async Task<IEnumerable<Position>> SearchPositionsInLocationAsync(int locationId, string term)
+        {
+            var query = _context.Positions
+                .Include(p => p.Employees)
+                .Include(p => p.Location) // Include Location to check its name
+                .Where(p => p.LocationId == locationId);
+
+            if (!string.IsNullOrWhiteSpace(term))
+            {
+                string lowerTerm = term.ToLower();
+                query = query.Where(p =>
+                    p.WorkPosition.ToLower().Contains(lowerTerm) ||
+                    p.Employees.Any(e => e.EmployeeName.ToLower().Contains(lowerTerm)) ||
+                    p.Location.LocationName.ToLower().Contains(lowerTerm) // <--- ADD THIS
+                );
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

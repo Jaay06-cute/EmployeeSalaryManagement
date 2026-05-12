@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EmployeeSalaryManagement.EmployeeManagementDbContext;
+using EmployeeSalaryManagement.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,21 +17,32 @@ namespace EmployeeSalaryManagement
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string inputUser = txtUsername.Text.Trim();
+            string inputPass = txtPassword.Text.Trim();
 
-            // SIMPLE HARD-CODED LOGIN (MVP ONLY)
-            if (username == "admin" && password == "1234")
+            if (string.IsNullOrEmpty(inputUser) || string.IsNullOrEmpty(inputPass))
             {
-                MainForm main = new MainForm();
-                main.Show();
-                this.Hide(); 
+                MessageBox.Show("Please enter both username and password.");
+                return;
             }
-            else
+
+            using (var db = new SalaryDbContext())
             {
-                MessageBox.Show("Invalid username or password");
+                var repo = new UserRepository(db);
+                var user = await repo.AuthenticateAsync(inputUser, inputPass);
+
+                if (user != null)
+                {
+                    MainForm main = new MainForm();
+                    main.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid credentials. Please try again.");
+                }
             }
         }
     }

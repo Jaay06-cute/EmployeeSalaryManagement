@@ -17,6 +17,7 @@ namespace EmployeeSalaryManagement
         private readonly ILocationRepository locationrepo = new LocationRepository(new SalaryDbContext());
         private readonly IEmployeeRepository employeerepo = new EmployeeRepository(new SalaryDbContext());
         private readonly IAttendanceRepository attendancerepo = new AttendanceRepository(new SalaryDbContext());
+        private List<Attendance> _currentExistingAttendance = new();
         private int _locationId;
         public AttendanceControl()
         {
@@ -30,27 +31,68 @@ namespace EmployeeSalaryManagement
             lblDay.Text = date.Day.ToString();
             lblMonth.Text = date.ToString("MMMM");
             lblWhatDay.Text = date.DayOfWeek.ToString();
-            var locations = await locationrepo.GetAllAsync();
+            var locations = (await locationrepo.GetAllAsync()).ToList();
             comboBox1.DataSource = locations;
             comboBox1.DisplayMember = "LocationName";
             comboBox1.ValueMember = "LocationId";
+            if (locations.Count > 0)
+            {
+                _locationId = locations[0].LocationId;
+                Load();
+            }
         }
         private async void Load()
         {
+            if (_locationId <= 0) return;
+            DateTime currentDay = DateTime.Now.Date;
+
             var employees = await employeerepo.GetEmployeesByLocationAsync(_locationId);
+
+            // Store this in the class field so the DataBindingComplete event can see it
+            _currentExistingAttendance = (await attendancerepo.GetAttendanceByDateAndLocationAsync(currentDay, _locationId)).ToList();
+
+            // Trigger the binding
             dataGridView1.DataSource = employees.Select(e => new
             {
                 ID = e.EmployeeID,
                 Name = e.EmployeeName,
-                Position = e.Position.WorkPosition,
+                Position = e.Position?.WorkPosition ?? "N/A",
             }).ToList();
+
+            // Update Button
+            if (_currentExistingAttendance.Any())
+            {
+                button1.Text = "Edit Attendance";
+                button1.BackColor = Color.Orange;
+            }
+            else
+            {
+                button1.Text = "Submit Attendance";
+                button1.BackColor = Color.Green;
+            }
+        }
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
             if (dataGridView1.Columns["Column3"] is DataGridViewComboBoxColumn statusCol)
             {
-                statusCol.Items.Clear();
-                statusCol.Items.Add("No Work");
-                statusCol.Items.Add("Present");
-                statusCol.Items.Add("Absent");
-                statusCol.Items.Add("Late");
+                // 1. Ensure Items exist
+                if (statusCol.Items.Count == 0)
+                {
+                    statusCol.Items.AddRange(new object[] { "No Work", "Present", "Absent", "Late" });
+                }
+
+                // 2. Loop through the rows now that binding is 100% finished
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells["ID"].Value == null) continue;
+
+                    int empId = (int)row.Cells["ID"].Value;
+                    var savedRecord = _currentExistingAttendance.FirstOrDefault(a => a.EmployeeId == empId);
+
+                    // 3. Force the value. 
+                    // Note: Use .ToString() to ensure the type matches the ComboBox Item type exactly.
+                    row.Cells["Column3"].Value = savedRecord?.Status ?? "No Work";
+                }
             }
         }
 
@@ -74,12 +116,9 @@ namespace EmployeeSalaryManagement
                 {
                     if (row.IsNewRow) continue;
 
-                    // Use the column name "ID" from your anonymous object binding
                     if (row.Cells["ID"].Value != null)
                     {
                         int empId = Convert.ToInt32(row.Cells["ID"].Value);
-
-                        // Get status from your ComboBox column (Column3)
                         string status = row.Cells["Column3"]?.Value?.ToString() ?? "No Work";
 
                         attendanceList.Add(new Attendance
@@ -90,12 +129,20 @@ namespace EmployeeSalaryManagement
                         });
                     }
                 }
-
                 if (attendanceList.Count > 0)
                 {
-                    await attendancerepo.AddRangeAsync(attendanceList);
-                    MessageBox.Show("Attendance and Employee Balances updated!", "Success");
+                    if (button1.Text == "Edit Attendance")
+                    {
+                        await attendancerepo.UpdateRangeAsync(attendanceList);
+                        MessageBox.Show("Attendance updated successfully!", "Update");
+                    }
+                    else
+                    {
+                        await attendancerepo.AddRangeAsync(attendanceList);
+                        MessageBox.Show("Attendance saved successfully!", "Success");
+                    }
                 }
+                Load();
             }
             catch (Exception ex)
             {

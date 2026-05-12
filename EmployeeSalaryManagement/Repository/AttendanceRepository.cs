@@ -12,21 +12,29 @@ namespace EmployeeSalaryManagement.Repository
         {
             foreach (var attendance in attendances)
             {
-                if (attendance.Status == "Present")
-                {
-                    var employee = await _context.Employees
-                        .Include(e => e.Position)
-                        .FirstOrDefaultAsync(e => e.EmployeeID == attendance.EmployeeId);
+                bool exists = await _context.Attendances.AnyAsync(a =>
+                    a.EmployeeId == attendance.EmployeeId &&
+                    a.Date.Date == attendance.Date.Date);
 
-                    if (employee != null && employee.Position != null)
+                if (exists) continue;
+
+                var employee = await _context.Employees.Include(e => e.Position)
+                    .FirstOrDefaultAsync(e => e.EmployeeID == attendance.EmployeeId);
+
+                if (employee?.Position != null)
+                {
+                    if (attendance.Status == "Present")
                     {
                         employee.Balance += employee.Position.Salary;
                     }
+                    else if (attendance.Status == "Late")
+                    {
+                        employee.Balance += (employee.Position.Salary * 0.5);
+                    }
                 }
+                await _context.Attendances.AddAsync(attendance);
             }
-
-            await _context.Attendances.AddRangeAsync(attendances);
-            await _context.SaveChangesAsync(); // Saves both Attendance and the new Balance
+            await _context.SaveChangesAsync();
         }
         public async Task<IEnumerable<Attendance>> GetEmployeeWorkHistoryAsync(int employeeId)
         {
@@ -34,26 +42,62 @@ namespace EmployeeSalaryManagement.Repository
                 .Where(a => a.EmployeeId == employeeId && a.Status != "No Work")
                 .OrderByDescending(a => a.Date) // Show newest records first
                 .ToListAsync();
-        }
-        // Inside AttendanceRepository.cs
-        public async Task<double> GetMonthlySalaryCalculationAsync(int employeeId, int month, int year)
+        }     
+        public async Task<List<Attendance>> GetAttendanceByDateAndLocationAsync(DateTime date, int locationId)
         {
-            var employee = await _context.Employees
-                .Include(e => e.Position)
-                .FirstOrDefaultAsync(e => e.EmployeeID == employeeId);
+            return await _context.Attendances
+                .Where(a => a.Date.Date == date.Date && a.Employee.Position.LocationId == locationId)
+                .ToListAsync();
+        }
+        public async Task UpdateRangeAsync(IEnumerable<Attendance> attendances)
+        {
+            foreach (var attendance in attendances)
+            {
+                var existing = await _context.Attendances.FirstOrDefaultAsync(a =>
+                    a.EmployeeId == attendance.EmployeeId &&
+                    a.Date.Date == attendance.Date.Date);
 
-            if (employee == null) return 0;
+                if (existing != null)
+                {
+                    var employee = await _context.Employees.Include(e => e.Position)
+                        .FirstOrDefaultAsync(e => e.EmployeeID == attendance.EmployeeId);
 
-            int presentDays = await _context.Attendances
-                .Where(a => a.EmployeeId == employeeId &&
-                            a.Status == "Present" &&
-                            a.Date.Month == month &&
-                            a.Date.Year == year)
-                .CountAsync();
+                    if (employee?.Position != null)
+                    {
+                        // 1. REVERSE the old status effect
+                        if (existing.Status == "Present")
+                            employee.Balance -= employee.Position.Salary;
+                        else if (existing.Status == "Late")
+                            employee.Balance -= (employee.Position.Salary * 0.5);
 
-            return presentDays * employee.Position.Salary;
+                        // 2. APPLY the new status effect
+                        if (attendance.Status == "Present")
+                            employee.Balance += employee.Position.Salary;
+                        else if (attendance.Status == "Late")
+                            employee.Balance += (employee.Position.Salary * 0.5);
+                    }
+                    existing.Status = attendance.Status;
+                }
+                else
+                {
+                    await AddSingleAttendanceWithBalanceAsync(attendance);
+                }
+            }
+            await _context.SaveChangesAsync();
         }
 
+        private async Task AddSingleAttendanceWithBalanceAsync(Attendance attendance)
+        {
+            var employee = await _context.Employees.Include(e => e.Position)
+                .FirstOrDefaultAsync(e => e.EmployeeID == attendance.EmployeeId);
+
+            if (employee?.Position != null)
+            {
+                if (attendance.Status == "Present") employee.Balance += employee.Position.Salary;
+                else if (attendance.Status == "Late") employee.Balance += (employee.Position.Salary * 0.5);
+            }
+            await _context.Attendances.AddAsync(attendance);
+        }
     }
 
 }

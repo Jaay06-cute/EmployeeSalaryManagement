@@ -15,9 +15,12 @@ namespace EmployeeSalaryManagement.LocationControls
     public partial class LocationMainContentControl : UserControl
     {
 
-        public LocationMainContentControl()
+        private string _searchTerm;
+
+        public LocationMainContentControl(string searchTerm = "")
         {
             InitializeComponent();
+            _searchTerm = searchTerm;
             LoadLocations();
         }
         private void LoadControl(UserControl uc)
@@ -30,13 +33,11 @@ namespace EmployeeSalaryManagement.LocationControls
         {
             flpLocation.Controls.Clear();
             var repo = new LocationRepository(new SalaryDbContext());
-            var locations = await repo.GetLocationsWithDetailsAsync();
-            var employeeRepo = new EmployeeRepository(new SalaryDbContext());
+            var locations = await repo.SearchLocationsAsync(_searchTerm);
             foreach (var loc in locations)
             {
                 int positionCount = loc.Positions.Count;
-                string totalEmployeeCount = employeeRepo.GetAllEmployeesAsync().Result.Count().ToString();
-
+                string totalEmployeeCount = loc.Positions.Sum(p => p.Employees.Count).ToString();
                 var card = new LocationCardControl();
                 card.lblLocation.Text = loc.LocationName;
                 card.lblAdress.Text = loc.LocationAddress;
@@ -47,7 +48,7 @@ namespace EmployeeSalaryManagement.LocationControls
                 string currentName = loc.LocationName;
 
                 card.CardClicked += (s, e) => {
-                    LoadControl(new DowntownOfficeControl(currentId, currentName));
+                    LoadControl(new DowntownOfficeControl(currentId, currentName, _searchTerm));
                 };
 
                 flpLocation.Controls.Add(card);

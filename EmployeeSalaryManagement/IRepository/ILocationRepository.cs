@@ -10,5 +10,6 @@ namespace EmployeeSalaryManagement.IRepository
         Task<IEnumerable<Location>> GetLocationsWithDetailsAsync();
         Task<Location> GetLocationStatsAsync(int locationId);
         Task<Location> GetByNameAsync(string name);
+        Task<IEnumerable<Location>> SearchLocationsAsync(string term);
     }
 }

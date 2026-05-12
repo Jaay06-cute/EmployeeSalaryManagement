@@ -37,7 +37,7 @@
             rdCashAdvance = new RadioButton();
             dateTimePicker1 = new DateTimePicker();
             label2 = new Label();
-            label1 = new Label();
+            lblName = new Label();
             lblAdress = new Label();
             lblLocation = new Label();
             panel1.SuspendLayout();
@@ -54,7 +54,7 @@
             panel1.Controls.Add(rdCashAdvance);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblName);
             panel1.Controls.Add(lblAdress);
             panel1.Controls.Add(lblLocation);
             panel1.Dock = DockStyle.Fill;
@@ -155,15 +155,15 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(17, 78);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(124, 23);
-            label1.TabIndex = 10;
-            label1.Text = "John Martinez";
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblName.ForeColor = Color.Black;
+            lblName.Location = new Point(17, 78);
+            lblName.Margin = new Padding(2, 0, 2, 0);
+            lblName.Name = "label1";
+            lblName.Size = new Size(124, 23);
+            lblName.TabIndex = 10;
+            lblName.Text = "John Martinez";
             // 
             // lblAdress
             // 
@@ -214,7 +214,7 @@
         private RadioButton rdCashAdvance;
         private DateTimePicker dateTimePicker1;
         public Label label2;
-        public Label label1;
+        public Label lblName;
         public Label lblAdress;
         public Label lblLocation;
         private Button button2;

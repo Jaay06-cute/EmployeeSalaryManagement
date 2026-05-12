@@ -9,6 +9,7 @@ namespace EmployeeSalaryManagement.IRepository
     {
         Task AddRangeAsync(IEnumerable<Attendance> attendances);
         Task<IEnumerable<Attendance>> GetEmployeeWorkHistoryAsync(int employeeId);
-        Task<double> GetMonthlySalaryCalculationAsync(int employeeId, int month, int year);
+        Task<List<Attendance>> GetAttendanceByDateAndLocationAsync(DateTime date, int locationId);
+        Task UpdateRangeAsync(IEnumerable<Attendance> attendances);
     }
 }

@@ -41,8 +41,8 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewButtonColumn();
             Column6 = new DataGridViewButtonColumn();
-            button3 = new Button();
-            textBox2 = new TextBox();
+            btnSearch = new Button();
+            txtSearch = new TextBox();
             TopBar.SuspendLayout();
             DowntownContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -89,8 +89,8 @@
             DowntownContent.Controls.Add(lblList);
             DowntownContent.Controls.Add(label2);
             DowntownContent.Controls.Add(dataGridView2);
-            DowntownContent.Controls.Add(button3);
-            DowntownContent.Controls.Add(textBox2);
+            DowntownContent.Controls.Add(btnSearch);
+            DowntownContent.Controls.Add(txtSearch);
             DowntownContent.Dock = DockStyle.Fill;
             DowntownContent.Location = new Point(0, 104);
             DowntownContent.Margin = new Padding(2);
@@ -198,24 +198,26 @@
             Column6.ReadOnly = true;
             Column6.Width = 137;
             // 
-            // button3
+            // btnSearch
             // 
-            button3.Location = new Point(748, 498);
-            button3.Margin = new Padding(2);
-            button3.Name = "button3";
-            button3.Size = new Size(129, 26);
-            button3.TabIndex = 12;
-            button3.Text = "Search";
-            button3.UseVisualStyleBackColor = true;
+            btnSearch.Location = new Point(748, 498);
+            btnSearch.Margin = new Padding(2);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(129, 26);
+            btnSearch.TabIndex = 12;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
-            // textBox2
+            // txtSearch
             // 
-            textBox2.Location = new Point(14, 499);
-            textBox2.Margin = new Padding(2);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Search archived employees.....";
-            textBox2.Size = new Size(730, 27);
-            textBox2.TabIndex = 11;
+            txtSearch.Location = new Point(14, 499);
+            txtSearch.Margin = new Padding(2);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search archived employees.....";
+            txtSearch.Size = new Size(730, 27);
+            txtSearch.TabIndex = 11;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // ArchiveControl
             // 
@@ -241,8 +243,8 @@
         private Label label10;
         private Label label1;
         private Panel DowntownContent;
-        private Button button3;
-        private TextBox textBox2;
+        private Button btnSearch;
+        private TextBox txtSearch;
         private Label label2;
         private DataGridView dataGridView2;
         public Label lblList;

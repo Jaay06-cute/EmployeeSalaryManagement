@@ -30,7 +30,6 @@
         {
             button1 = new Button();
             lblBalance = new Label();
-            comboBox1 = new ComboBox();
             floTransaction = new FlowLayoutPanel();
             SuspendLayout();
             // 
@@ -50,22 +49,12 @@
             lblBalance.AutoSize = true;
             lblBalance.Font = new Font("Arial Narrow", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblBalance.ForeColor = Color.Black;
-            lblBalance.Location = new Point(361, 8);
+            lblBalance.Location = new Point(2, 8);
             lblBalance.Margin = new Padding(2, 0, 2, 0);
             lblBalance.Name = "lblBalance";
             lblBalance.Size = new Size(39, 22);
             lblBalance.TabIndex = 8;
             lblBalance.Text = "-$50";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(6, 7);
-            comboBox1.Margin = new Padding(2);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(146, 28);
-            comboBox1.TabIndex = 9;
-            comboBox1.Text = "Date";
             // 
             // floTransaction
             // 
@@ -82,7 +71,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(floTransaction);
-            Controls.Add(comboBox1);
             Controls.Add(lblBalance);
             Controls.Add(button1);
             Margin = new Padding(2);
@@ -95,7 +83,6 @@
         #endregion
         private Button button1;
         public Label lblBalance;
-        private ComboBox comboBox1;
         private FlowLayoutPanel floTransaction;
     }
 }

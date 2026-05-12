@@ -19,11 +19,13 @@ namespace EmployeeSalaryManagement.LocationControls
         private int _locationId;
         private string _locationName;
         private readonly IPositionRepository _positionRepo;
+        private string _searchTerm;
 
-        public DowntownOfficeControl(int locationId, string locationName)
+        public DowntownOfficeControl(int locationId, string locationName, string searchTerm = "")
         {
             InitializeComponent();
             _locationId = locationId;
+            _searchTerm = searchTerm;
             _locationName = locationName;
             _positionRepo = new Repository.PositionRepository(new SalaryDbContext());
             LoadPosition();
@@ -37,12 +39,12 @@ namespace EmployeeSalaryManagement.LocationControls
         }
         private void BackClick(object sender, EventArgs e)
         {
-            LoadControl(new LocationMainContentControl());
+            LoadControl(new LocationMainContentControl(_searchTerm));
         }
 
         private void BackArrowClick(object sender, EventArgs e)
         {
-            LoadControl(new LocationMainContentControl());
+            LoadControl(new LocationMainContentControl(_searchTerm));
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -55,10 +57,7 @@ namespace EmployeeSalaryManagement.LocationControls
             try
             {
                 flpPosition.Controls.Clear();
-
-                // Call the repository instead of creating a DbContext here
-                var positions = await _positionRepo.GetPositionsByLocationAsync(_locationId);
-
+                var positions = await _positionRepo.SearchPositionsInLocationAsync(_locationId, _searchTerm);
                 foreach (var pos in positions)
                 {
                     // Employees are already loaded, so we just count the list in memory
@@ -74,7 +73,7 @@ namespace EmployeeSalaryManagement.LocationControls
 
                     card.CardClicked += (s, e) =>
                     {
-                        LoadControl(new LaborEmployeesController(currentId, currentName, _locationName, _locationId));
+                        LoadControl(new LaborEmployeesController(currentId, currentName, _locationName, _locationId, _searchTerm));
                     };
 
                     flpPosition.Controls.Add(card);

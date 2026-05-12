@@ -29,33 +29,81 @@
         private void InitializeComponent()
         {
             pnlLogin = new Panel();
+            label3 = new Label();
+            txtUsername = new TextBox();
+            label2 = new Label();
+            txtPassword = new TextBox();
             btnLogin = new Button();
             label1 = new Label();
-            txtUsername = new TextBox();
+            this.txtCurrentPassword = new TextBox();
             pnlLogin.SuspendLayout();
             SuspendLayout();
             // 
             // pnlLogin
             // 
+            pnlLogin.Controls.Add(label3);
+            pnlLogin.Controls.Add(txtUsername);
+            pnlLogin.Controls.Add(label2);
+            pnlLogin.Controls.Add(txtPassword);
             pnlLogin.Controls.Add(btnLogin);
             pnlLogin.Controls.Add(label1);
-            pnlLogin.Controls.Add(txtUsername);
+            pnlLogin.Controls.Add(this.txtCurrentPassword);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
-            pnlLogin.Margin = new Padding(2);
+            pnlLogin.Margin = new Padding(2, 3, 2, 3);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(319, 227);
+            pnlLogin.Size = new Size(365, 303);
             pnlLogin.TabIndex = 4;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(47, 52);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(130, 19);
+            label3.TabIndex = 9;
+            label3.Text = "Change Username";
+            // 
+            // txtUsername
+            // 
+            txtUsername.BackColor = Color.Azure;
+            txtUsername.Location = new Point(47, 72);
+            txtUsername.Margin = new Padding(2, 3, 2, 3);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(271, 27);
+            txtUsername.TabIndex = 8;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(47, 159);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(127, 19);
+            label2.TabIndex = 7;
+            label2.Text = "Change Password";
+            // 
+            // txtPassword
+            // 
+            txtPassword.BackColor = Color.Azure;
+            txtPassword.Location = new Point(47, 179);
+            txtPassword.Margin = new Padding(2, 3, 2, 3);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(271, 27);
+            txtPassword.TabIndex = 6;
             // 
             // btnLogin
             // 
             btnLogin.BackColor = SystemColors.ActiveCaption;
             btnLogin.BackgroundImageLayout = ImageLayout.Zoom;
             btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(83, 117);
-            btnLogin.Margin = new Padding(2);
+            btnLogin.Location = new Point(90, 221);
+            btnLogin.Margin = new Padding(2, 3, 2, 3);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(162, 20);
+            btnLogin.Size = new Size(185, 27);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "Change Password";
             btnLogin.UseVisualStyleBackColor = false;
@@ -65,29 +113,31 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(56, 64);
+            label1.Location = new Point(47, 109);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(100, 13);
+            label1.Size = new Size(127, 19);
             label1.TabIndex = 2;
-            label1.Text = "Change Password";
+            label1.Text = "Current Password";
             // 
-            // txtUsername
+            // txtCurrentPassword
             // 
-            txtUsername.BackColor = Color.Azure;
-            txtUsername.Location = new Point(56, 79);
-            txtUsername.Margin = new Padding(2);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(238, 23);
-            txtUsername.TabIndex = 1;
+            this.txtCurrentPassword.BackColor = Color.Azure;
+            this.txtCurrentPassword.Location = new Point(47, 129);
+            this.txtCurrentPassword.Margin = new Padding(2, 3, 2, 3);
+            this.txtCurrentPassword.Name = "txtCurrentPassword";
+            this.txtCurrentPassword.Size = new Size(271, 27);
+            this.txtCurrentPassword.TabIndex = 1;
             // 
             // ChangePassword
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(319, 227);
+            ClientSize = new Size(365, 303);
             Controls.Add(pnlLogin);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "ChangePassword";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ChangePassword";
             pnlLogin.ResumeLayout(false);
             pnlLogin.PerformLayout();
@@ -100,5 +150,9 @@
         private Button btnLogin;
         private Label label1;
         private TextBox txtUsername;
+        private Label label3;
+        private TextBox txtCurrentPassword;
+        private Label label2;
+        private TextBox txtPassword;
     }
 }

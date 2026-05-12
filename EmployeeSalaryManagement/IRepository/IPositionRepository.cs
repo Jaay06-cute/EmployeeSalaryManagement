@@ -9,5 +9,6 @@ namespace EmployeeSalaryManagement.IRepository
     {
         Task<IEnumerable<Position>> GetPositionsByLocationAsync(int locationId);
         Task<decimal> GetTotalCompanyPayrollAsync();
+        Task<IEnumerable<Position>> SearchPositionsInLocationAsync(int locationId, string term);
     }
 }

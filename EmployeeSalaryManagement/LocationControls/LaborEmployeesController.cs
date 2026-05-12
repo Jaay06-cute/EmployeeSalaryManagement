@@ -15,17 +15,19 @@ namespace EmployeeSalaryManagement.LocationControls
 {
     public partial class LaborEmployeesController : UserControl
     {
+        private string _searchTerm;
         private int _PositionId;
         private string _Location;
         private int _LocationId;
         private readonly IEmployeeRepository _employeeRepo;
 
-        public LaborEmployeesController(int positionId, string positionName, string Location, int locationId)
+        public LaborEmployeesController(int positionId, string positionName, string Location, int locationId, string searchTerm = "")
         {
             InitializeComponent();
             _PositionId = positionId;
             _Location = Location;
             _LocationId = locationId;
+            _searchTerm = searchTerm;
             lblLabor.Text = positionName + " Employee";
             _employeeRepo = new Repository.EmployeeRepository(new SalaryDbContext());
             Info();
@@ -39,7 +41,7 @@ namespace EmployeeSalaryManagement.LocationControls
 
         private void BackClick(object sender, EventArgs e)
         {
-            LoadControl(new DowntownOfficeControl(_LocationId, _Location));
+            LoadControl(new DowntownOfficeControl(_LocationId, _Location, _searchTerm));
         }
 
         private void BackArrowClick(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace EmployeeSalaryManagement.LocationControls
         {
             try
             {
-                var employees = await _employeeRepo.GetEmployeesByPositionAsync(_PositionId);
+                var employees = await _employeeRepo.SearchEmployeesInPositionAsync(_PositionId, _searchTerm);
                 int count = employees.Count();
                 label11.Text = $"{count} employees found";
                 dataGridView1.DataSource = employees.Select(e => new

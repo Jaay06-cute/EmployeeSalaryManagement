@@ -20,6 +20,8 @@ namespace EmployeeSalaryManagement.Notification
         {
             InitializeComponent();
             _employeeId = employeeId;
+            var employee = _repo.GetByIdAsync(employeeId).Result;
+            lblName.Text = $"{employee.EmployeeName}";
         }
         private async void button2_Click(object sender, EventArgs e)
         {

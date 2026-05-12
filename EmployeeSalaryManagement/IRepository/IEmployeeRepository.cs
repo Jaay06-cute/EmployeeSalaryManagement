@@ -17,6 +17,7 @@ namespace EmployeeSalaryManagement.IRepository
         Task RestoreEmployeeAsync(int id);
         Task HardDeleteEmployeeAsync(int id);
         Task<double> GetTotalEmployeeBalanceAsync();
-
+        Task<IEnumerable<Employee>> SearchEmployeesInPositionAsync(int positionId, string term);
+        Task<IEnumerable<Employee>> SearchArchivedEmployeesAsync(string term);
     }
 }
