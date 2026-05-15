@@ -50,26 +50,27 @@
             DowntownContent.Controls.Add(label11);
             DowntownContent.Controls.Add(lblHeader);
             DowntownContent.Location = new Point(0, 0);
-            DowntownContent.Margin = new Padding(2, 3, 2, 3);
+            DowntownContent.Margin = new Padding(2, 2, 2, 2);
             DowntownContent.Name = "DowntownContent";
-            DowntownContent.Size = new Size(906, 661);
+            DowntownContent.Size = new Size(779, 428);
             DowntownContent.TabIndex = 4;
             // 
             // flpPosition
             // 
-            flpPosition.Location = new Point(24, 150);
+            flpPosition.Location = new Point(21, 112);
+            flpPosition.Margin = new Padding(3, 2, 3, 2);
             flpPosition.Name = "flpPosition";
-            flpPosition.Size = new Size(846, 491);
+            flpPosition.Size = new Size(740, 296);
             flpPosition.TabIndex = 15;
             // 
             // button2
             // 
             button2.BackColor = Color.DarkSlateGray;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(718, 27);
-            button2.Margin = new Padding(2, 3, 2, 3);
+            button2.Location = new Point(628, 20);
+            button2.Margin = new Padding(2, 2, 2, 2);
             button2.Name = "button2";
-            button2.Size = new Size(152, 51);
+            button2.Size = new Size(133, 38);
             button2.TabIndex = 14;
             button2.Text = "+ Add Position";
             button2.UseVisualStyleBackColor = false;
@@ -80,10 +81,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkSlateGray;
-            label1.Location = new Point(65, 27);
+            label1.Location = new Point(57, 20);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(167, 23);
+            label1.Size = new Size(133, 18);
             label1.TabIndex = 9;
             label1.Text = "Back to Locations";
             label1.Click += BackClick;
@@ -91,10 +92,10 @@
             // pictureBox10
             // 
             pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(23, 21);
-            pictureBox10.Margin = new Padding(2, 3, 2, 3);
+            pictureBox10.Location = new Point(20, 16);
+            pictureBox10.Margin = new Padding(2, 2, 2, 2);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(37, 37);
+            pictureBox10.Size = new Size(32, 28);
             pictureBox10.TabIndex = 9;
             pictureBox10.TabStop = false;
             pictureBox10.Click += BackArrowClick;
@@ -104,10 +105,10 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.DarkSlateGray;
-            label11.Location = new Point(24, 105);
+            label11.Location = new Point(21, 79);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(362, 28);
+            label11.Size = new Size(286, 21);
             label11.TabIndex = 7;
             label11.Text = "Select a job category to view employees";
             // 
@@ -116,22 +117,22 @@
             lblHeader.AutoSize = true;
             lblHeader.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHeader.ForeColor = Color.DarkSlateGray;
-            lblHeader.Location = new Point(21, 69);
+            lblHeader.Location = new Point(18, 52);
             lblHeader.Margin = new Padding(2, 0, 2, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(266, 41);
+            lblHeader.Size = new Size(214, 32);
             lblHeader.TabIndex = 6;
             lblHeader.Text = "Downtown Office";
             // 
             // DowntownOfficeControl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             Controls.Add(DowntownContent);
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "DowntownOfficeControl";
-            Size = new Size(906, 661);
+            Size = new Size(779, 428);
             DowntownContent.ResumeLayout(false);
             DowntownContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();

@@ -29,7 +29,7 @@ namespace EmployeeSalaryManagement.LocationControls
                 var history = await _attendanceRepo.GetEmployeeWorkHistoryAsync(_employeeID);
                 dataGridView1.DataSource = history.Select(a => new
                 {
-                    Date = a.Date.ToShortDateString(),
+                    Date = a.Date.ToString("MMMM dd, yyyy"),
                     Status = a.Status
                 }).ToList();
             }

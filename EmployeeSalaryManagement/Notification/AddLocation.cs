@@ -21,15 +21,22 @@ namespace EmployeeSalaryManagement.Notification
 
         private async void AddingLoc(object sender, EventArgs e)
         {
-            ILocationRepository repo = new LocationRepository( new SalaryDbContext());
-            var location = new Location
+            if (txtLocation.Text != "" && txtAddress.Text != "")
             {
-                LocationName = txtLocation.Text,
-                LocationAddress = txtAddress.Text
-            };
-            await repo.AddAsync(location);
-            await repo.SaveAsync();
-            this.Hide();
+                ILocationRepository repo = new LocationRepository(new SalaryDbContext());
+                var location = new Location
+                {
+                    LocationName = txtLocation.Text,
+                    LocationAddress = txtAddress.Text
+                };
+                await repo.AddAsync(location);
+                await repo.SaveAsync();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Please Input valid Address and Location");
+            }
         }
     }
 }

@@ -59,7 +59,7 @@
             btnLogin.Location = new Point(89, 146);
             btnLogin.Margin = new Padding(2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(162, 20);
+            btnLogin.Size = new Size(162, 25);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "+ Add Position";
             btnLogin.UseVisualStyleBackColor = false;
@@ -81,7 +81,7 @@
             txtSalary.BackColor = Color.Azure;
             txtSalary.Location = new Point(56, 119);
             txtSalary.Margin = new Padding(2);
-            txtSalary.Name = "txtPassword";
+            txtSalary.Name = "txtSalary";
             txtSalary.Size = new Size(238, 23);
             txtSalary.TabIndex = 3;
             // 

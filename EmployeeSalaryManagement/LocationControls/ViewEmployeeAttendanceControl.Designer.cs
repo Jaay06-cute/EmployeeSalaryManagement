@@ -44,7 +44,7 @@
             MainContentView.Location = new Point(0, 0);
             MainContentView.Margin = new Padding(2);
             MainContentView.Name = "MainContentView";
-            MainContentView.Size = new Size(702, 314);
+            MainContentView.Size = new Size(614, 236);
             MainContentView.TabIndex = 7;
             // 
             // dataGridView1
@@ -56,7 +56,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(700, 311);
+            dataGridView1.Size = new Size(612, 233);
             dataGridView1.TabIndex = 0;
             // 
             // Date
@@ -65,7 +65,7 @@
             Date.HeaderText = "Date";
             Date.MinimumWidth = 8;
             Date.Name = "Date";
-            Date.Width = 270;
+            Date.Width = 208;
             // 
             // Status
             // 
@@ -73,16 +73,16 @@
             Status.HeaderText = "Status";
             Status.MinimumWidth = 8;
             Status.Name = "Status";
-            Status.Width = 600;
+            Status.Width = 400;
             // 
             // ViewEmployeeAttendanceControl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainContentView);
             Margin = new Padding(2);
             Name = "ViewEmployeeAttendanceControl";
-            Size = new Size(702, 314);
+            Size = new Size(614, 236);
             MainContentView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

@@ -42,9 +42,9 @@
             pnlLogin.Controls.Add(txtName);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
-            pnlLogin.Margin = new Padding(2, 3, 2, 3);
+            pnlLogin.Margin = new Padding(2, 2, 2, 2);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(383, 355);
+            pnlLogin.Size = new Size(335, 266);
             pnlLogin.TabIndex = 3;
             // 
             // btnLogin
@@ -52,10 +52,10 @@
             btnLogin.BackColor = SystemColors.ActiveCaption;
             btnLogin.BackgroundImageLayout = ImageLayout.Zoom;
             btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(101, 165);
-            btnLogin.Margin = new Padding(2, 3, 2, 3);
+            btnLogin.Location = new Point(88, 124);
+            btnLogin.Margin = new Padding(2, 2, 2, 2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(185, 27);
+            btnLogin.Size = new Size(162, 27);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "+ Add Employee";
             btnLogin.UseVisualStyleBackColor = false;
@@ -65,29 +65,28 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(64, 85);
+            label1.Location = new Point(56, 64);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(49, 19);
+            label1.Size = new Size(38, 13);
             label1.TabIndex = 2;
             label1.Text = "Name";
             // 
             // txtName
             // 
             txtName.BackColor = Color.Azure;
-            txtName.Location = new Point(64, 105);
-            txtName.Margin = new Padding(2, 3, 2, 3);
+            txtName.Location = new Point(56, 79);
+            txtName.Margin = new Padding(2, 2, 2, 2);
             txtName.Name = "txtName";
-            txtName.Size = new Size(271, 27);
+            txtName.Size = new Size(238, 23);
             txtName.TabIndex = 1;
             // 
             // AddEmployee
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(383, 355);
+            ClientSize = new Size(335, 266);
             Controls.Add(pnlLogin);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "AddEmployee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddEmployee";

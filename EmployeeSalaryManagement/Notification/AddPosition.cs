@@ -23,16 +23,31 @@ namespace EmployeeSalaryManagement.Notification
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            IPositionRepository repo = new PositionRepository(new SalaryDbContext());
-            var position = new Model.Position
+            try
             {
-                WorkPosition = txtPosition.Text,
-                Salary = (double)decimal.Parse(txtSalary.Text),
-                LocationId = _locationID
-            };
-            await repo.AddAsync(position);
-            await repo.SaveAsync();
-            this.Hide();
+                if (txtPosition.Text != "")
+                {
+                    IPositionRepository repo = new PositionRepository(new SalaryDbContext());
+                    var position = new Model.Position
+                    {
+                        WorkPosition = txtPosition.Text,
+                        Salary = (double)decimal.Parse(txtSalary.Text),
+                        LocationId = _locationID
+                    };
+                    await repo.AddAsync(position);
+                    await repo.SaveAsync();
+                    this.Hide();
+
+                }
+                else
+                {
+                    MessageBox.Show("Please Input a Valid Position");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please input a valid Salary");
+            }
         }
     }
 }

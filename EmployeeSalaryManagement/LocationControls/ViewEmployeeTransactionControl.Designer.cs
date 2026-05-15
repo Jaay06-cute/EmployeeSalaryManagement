@@ -35,10 +35,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(552, 2);
+            button1.Location = new Point(483, 2);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(141, 34);
+            button1.Size = new Size(123, 26);
             button1.TabIndex = 1;
             button1.Text = "Add Transactions";
             button1.UseVisualStyleBackColor = true;
@@ -49,10 +49,10 @@
             lblBalance.AutoSize = true;
             lblBalance.Font = new Font("Arial Narrow", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblBalance.ForeColor = Color.Black;
-            lblBalance.Location = new Point(2, 8);
+            lblBalance.Location = new Point(2, 6);
             lblBalance.Margin = new Padding(2, 0, 2, 0);
             lblBalance.Name = "lblBalance";
-            lblBalance.Size = new Size(39, 22);
+            lblBalance.Size = new Size(30, 17);
             lblBalance.TabIndex = 8;
             lblBalance.Text = "-$50";
             // 
@@ -60,22 +60,23 @@
             // 
             floTransaction.AutoScroll = true;
             floTransaction.FlowDirection = FlowDirection.TopDown;
-            floTransaction.Location = new Point(0, 52);
+            floTransaction.Location = new Point(0, 39);
+            floTransaction.Margin = new Padding(3, 2, 3, 2);
             floTransaction.Name = "floTransaction";
-            floTransaction.Size = new Size(700, 259);
+            floTransaction.Size = new Size(612, 194);
             floTransaction.TabIndex = 10;
             floTransaction.WrapContents = false;
             // 
             // ViewEmployeeTransactionControl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(floTransaction);
             Controls.Add(lblBalance);
             Controls.Add(button1);
             Margin = new Padding(2);
             Name = "ViewEmployeeTransactionControl";
-            Size = new Size(702, 314);
+            Size = new Size(612, 233);
             ResumeLayout(false);
             PerformLayout();
         }
