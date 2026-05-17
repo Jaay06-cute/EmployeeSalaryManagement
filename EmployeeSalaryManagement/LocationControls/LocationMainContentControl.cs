@@ -48,7 +48,11 @@ namespace EmployeeSalaryManagement.LocationControls
                 string currentName = loc.LocationName;
 
                 card.CardClicked += (s, e) => {
-                    LoadControl(new DowntownOfficeControl(currentId, currentName, _searchTerm));
+                    var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
+                    if (masterParent != null)
+                    {
+                        masterParent.LoadControl(new DowntownOfficeControl(currentId, currentName, _searchTerm), LocationControl.LocationViewMode.OfficePositions);
+                    }
                 };
 
                 flpLocation.Controls.Add(card);

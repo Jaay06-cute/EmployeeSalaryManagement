@@ -37,14 +37,27 @@ namespace EmployeeSalaryManagement.LocationControls
             uc.Dock = DockStyle.Fill;
             DowntownContent.Controls.Add(uc);
         }
+        public void UpdateSearchFromParent(string term)
+        {
+            _searchTerm = term;
+            LoadPosition(); 
+        }
         private void BackClick(object sender, EventArgs e)
         {
-            LoadControl(new LocationMainContentControl(_searchTerm));
+            var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
+            if (masterParent != null)
+            {
+                masterParent.LoadControl(new LocationMainContentControl(_searchTerm), LocationControl.LocationViewMode.MainDashboard);
+            }
         }
 
         private void BackArrowClick(object sender, EventArgs e)
         {
-            LoadControl(new LocationMainContentControl(_searchTerm));
+            var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
+            if (masterParent != null)
+            {
+                masterParent.LoadControl(new LocationMainContentControl(_searchTerm), LocationControl.LocationViewMode.MainDashboard);
+            }
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -73,7 +86,11 @@ namespace EmployeeSalaryManagement.LocationControls
 
                     card.CardClicked += (s, e) =>
                     {
-                        LoadControl(new LaborEmployeesController(currentId, currentName, _locationName, _locationId, _searchTerm));
+                        var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
+                        if (masterParent != null)
+                        {
+                            masterParent.LoadControl(new LaborEmployeesController(currentId, currentName, _locationName, _locationId, _searchTerm), LocationControl.LocationViewMode.LaborEmployees);
+                        }
                     };
 
                     flpPosition.Controls.Add(card);

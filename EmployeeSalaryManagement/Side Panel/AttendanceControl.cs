@@ -27,10 +27,7 @@ namespace EmployeeSalaryManagement
         }
         private async void Info()
         {
-            DateTime date = DateTime.Now;
-            lblDay.Text = date.Day.ToString();
-            lblMonth.Text = date.ToString("MMMM");
-            lblWhatDay.Text = date.DayOfWeek.ToString();
+            lblDay.Text = DateTime.Now.ToString("dddd, MMMM d");
             var locations = (await locationrepo.GetAllAsync()).ToList();
             comboBox1.DataSource = locations;
             comboBox1.DisplayMember = "LocationName";

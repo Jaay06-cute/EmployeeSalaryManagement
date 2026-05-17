@@ -19,7 +19,7 @@ namespace EmployeeSalaryManagement.LocationControls
         private int _PositionId;
         private string _Location;
         private int _LocationId;
-        private readonly IEmployeeRepository _employeeRepo;
+        private IEmployeeRepository _employeeRepo;
 
         public LaborEmployeesController(int positionId, string positionName, string Location, int locationId, string searchTerm = "")
         {
@@ -32,6 +32,13 @@ namespace EmployeeSalaryManagement.LocationControls
             _employeeRepo = new Repository.EmployeeRepository(new SalaryDbContext());
             Info();
         }
+        public void UpdateSearchFromParent(string term)
+        {
+            _searchTerm = term;
+            Info(); // Automatically runs the database query and rebinds your DataGridView
+        }
+        // Add this right under your public LaborEmployeesController(...) constructor
+        // Replace your OnLoad method with this:
         private void LoadControl(UserControl uc)
         {
             DowntownContent.Controls.Clear();   // remove old page
@@ -41,12 +48,22 @@ namespace EmployeeSalaryManagement.LocationControls
 
         private void BackClick(object sender, EventArgs e)
         {
-            LoadControl(new DowntownOfficeControl(_LocationId, _Location, _searchTerm));
+            var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
+
+            if (masterParent != null)
+            {
+                masterParent.LoadControl(new DowntownOfficeControl(_LocationId, _Location, _searchTerm), LocationControl.LocationViewMode.OfficePositions);
+            }
         }
 
         private void BackArrowClick(object sender, EventArgs e)
         {
-            LoadControl(new DowntownOfficeControl(_LocationId, _Location));
+            var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
+
+            if (masterParent != null)
+            {
+                masterParent.LoadControl(new DowntownOfficeControl(_LocationId, _Location, _searchTerm), LocationControl.LocationViewMode.OfficePositions);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -62,13 +79,25 @@ namespace EmployeeSalaryManagement.LocationControls
                 var employees = await _employeeRepo.SearchEmployeesInPositionAsync(_PositionId, _searchTerm);
                 int count = employees.Count();
                 label11.Text = $"{count} employees found";
-                dataGridView1.DataSource = employees.Select(e => new
+
+                // Convert your results to a list first
+                var updatedList = employees.Select(e => new
                 {
                     ID = e.EmployeeID,
                     Name = e.EmployeeName,
                     Salary = e.Position.Salary,
                     SalaryBalance = e.Balance
                 }).ToList();
+
+                // 1. Assign the fresh data directly over the old data
+                dataGridView1.DataSource = updatedList;
+
+                // 2. This safely forces the UI to update every row text 
+                // WITHOUT destroying your custom column header names or column sizing layout!
+                if (dataGridView1.BindingContext != null && updatedList.Count > 0)
+                {
+                    ((CurrencyManager)dataGridView1.BindingContext[updatedList]).Refresh();
+                }
             }
             catch (Exception ex)
             {
@@ -82,8 +111,10 @@ namespace EmployeeSalaryManagement.LocationControls
                 var row = dataGridView1.Rows[e.RowIndex];
                 dynamic selectedItem = row.DataBoundItem;
                 int employeeId = selectedItem.ID;
+
                 ViewEmployee employee = new ViewEmployee(employeeId);
                 employee.ShowDialog();
+                _employeeRepo = new Repository.EmployeeRepository(new SalaryDbContext());
                 Info();
             }
         }

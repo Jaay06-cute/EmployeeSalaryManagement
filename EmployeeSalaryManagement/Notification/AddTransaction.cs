@@ -28,28 +28,7 @@ namespace EmployeeSalaryManagement.Notification
             try
             {
                 double amount = (double)nudAmount.Value;
-                if (amount <= 0)
-                {
-                    MessageBox.Show("Please enter an amount greater than zero.");
-                    return;
-                }
-                if (!rdCashAdvance.Checked && !rdPayOut.Checked)
-                {
-                    MessageBox.Show("Please select a transaction type (Cash Advance or Pay Out).");
-                    return;
-                }
                 string type = rdCashAdvance.Checked ? "Cash Advance" : "Pay Out";
-                var employee = await _repo.GetByIdAsync(_employeeId);
-                if(employee == null)
-                {
-                    MessageBox.Show("Employee not found.");
-                    return;
-                }
-                if (employee.Balance < amount)
-                { 
-                    MessageBox.Show("Insufficient balance for this transaction.");
-                    return;
-                }
                 var checkout = new Checkout
                 {
                     EmployeeId = _employeeId,
