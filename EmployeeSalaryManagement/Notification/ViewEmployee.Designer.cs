@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             TopBar = new Panel();
+            btnUpdate = new Button();
             button2 = new Button();
             label10 = new Label();
             button1 = new Button();
@@ -47,6 +48,7 @@
             // TopBar
             // 
             TopBar.BackColor = Color.Azure;
+            TopBar.Controls.Add(btnUpdate);
             TopBar.Controls.Add(button2);
             TopBar.Controls.Add(label10);
             TopBar.Controls.Add(button1);
@@ -57,12 +59,25 @@
             TopBar.Size = new Size(878, 93);
             TopBar.TabIndex = 3;
             // 
+            // btnUpdate
+            // 
+            btnUpdate.BackColor = Color.DarkGreen;
+            btnUpdate.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdate.ForeColor = SystemColors.ButtonFace;
+            btnUpdate.Location = new Point(552, 24);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(189, 44);
+            btnUpdate.TabIndex = 5;
+            btnUpdate.Text = "Edit Information";
+            btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // button2
             // 
             button2.BackColor = Color.Red;
             button2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(662, 25);
+            button2.Location = new Point(747, 24);
             button2.Name = "button2";
             button2.Size = new Size(119, 44);
             button2.TabIndex = 4;
@@ -188,5 +203,7 @@
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn Date;
         private DataGridViewTextBoxColumn Status;
+        private Button button5;
+        private Button btnUpdate;
     }
 }

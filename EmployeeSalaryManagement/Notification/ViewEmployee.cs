@@ -45,5 +45,11 @@ namespace EmployeeSalaryManagement.Notification
         {
             LoadControl(new ViewEmployeeAttendanceControl());
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateInfo main = new UpdateInfo();
+            main.Show();
+        }
     }
 }
