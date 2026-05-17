@@ -70,15 +70,17 @@ namespace EmployeeSalaryManagement.LocationControls
             try
             {
                 flpPosition.Controls.Clear();
+                // Use the existing _positionRepo from your constructor
                 var positions = await _positionRepo.SearchPositionsInLocationAsync(_locationId, _searchTerm);
+
                 foreach (var pos in positions)
                 {
-                    // Employees are already loaded, so we just count the list in memory
                     int employeeCount = pos.Employees.Count;
 
-                    var card = new PositionCard();
-                    card.lblPosition.Text = pos.WorkPosition;
-                    card.lblSalary.Text = "P" + pos.Salary.ToString();
+                    // PASS THE DATA AND THE REPO HERE
+                    var card = new PositionCard(pos, _positionRepo);
+
+                    // Set the remaining labels
                     card.lblEmployee.Text = employeeCount.ToString();
 
                     int currentId = pos.PositionId;

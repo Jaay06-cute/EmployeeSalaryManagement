@@ -30,8 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocationCardControl));
             panel1 = new Panel();
+            button2 = new Button();
+            button1 = new Button();
             pictureBox3 = new PictureBox();
-            this.lblJobs = new Label();
+            lblJobs = new Label();
             lblEmployees = new Label();
             lblAdress = new Label();
             pictureBox1 = new PictureBox();
@@ -46,8 +48,10 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkSlateGray;
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(this.lblJobs);
+            panel1.Controls.Add(lblJobs);
             panel1.Controls.Add(lblEmployees);
             panel1.Controls.Add(lblAdress);
             panel1.Controls.Add(pictureBox1);
@@ -55,34 +59,60 @@
             panel1.Controls.Add(lblLocation);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 3, 2, 3);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(263, 217);
+            panel1.Size = new Size(230, 163);
             panel1.TabIndex = 1;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.IndianRed;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(161, 10);
+            button2.Name = "button2";
+            button2.Size = new Size(66, 26);
+            button2.TabIndex = 10;
+            button2.Text = "Delete";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += btnDeleteLocation_Click;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Turquoise;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(89, 10);
+            button1.Name = "button1";
+            button1.Size = new Size(66, 26);
+            button1.TabIndex = 9;
+            button1.Text = "Update";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += btnUpdateLocation_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(215, 13);
-            pictureBox3.Margin = new Padding(2, 3, 2, 3);
+            pictureBox3.Location = new Point(187, 82);
+            pictureBox3.Margin = new Padding(2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(37, 37);
+            pictureBox3.Size = new Size(32, 28);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
             // lblJobs
             // 
-            this.lblJobs.AutoSize = true;
-            this.lblJobs.BackColor = SystemColors.Window;
-            this.lblJobs.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            this.lblJobs.ForeColor = Color.FromArgb(64, 64, 64);
-            this.lblJobs.Location = new Point(175, 173);
-            this.lblJobs.Margin = new Padding(2, 0, 2, 0);
-            this.lblJobs.Name = "lblJobs";
-            this.lblJobs.Size = new Size(53, 24);
-            this.lblJobs.TabIndex = 6;
-            this.lblJobs.Text = "4 jobs";
+            lblJobs.AutoSize = true;
+            lblJobs.BackColor = SystemColors.Window;
+            lblJobs.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblJobs.ForeColor = Color.FromArgb(64, 64, 64);
+            lblJobs.Location = new Point(153, 130);
+            lblJobs.Margin = new Padding(2, 0, 2, 0);
+            lblJobs.Name = "lblJobs";
+            lblJobs.Size = new Size(46, 20);
+            lblJobs.TabIndex = 6;
+            lblJobs.Text = "4 jobs";
             // 
             // lblEmployees
             // 
@@ -90,10 +120,10 @@
             lblEmployees.BackColor = SystemColors.Window;
             lblEmployees.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEmployees.ForeColor = Color.FromArgb(64, 64, 64);
-            lblEmployees.Location = new Point(57, 173);
+            lblEmployees.Location = new Point(50, 130);
             lblEmployees.Margin = new Padding(2, 0, 2, 0);
             lblEmployees.Name = "lblEmployees";
-            lblEmployees.Size = new Size(113, 24);
+            lblEmployees.Size = new Size(95, 20);
             lblEmployees.TabIndex = 5;
             lblEmployees.Text = "28 employees";
             // 
@@ -102,20 +132,20 @@
             lblAdress.AutoSize = true;
             lblAdress.Font = new Font("Arial Narrow", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAdress.ForeColor = Color.White;
-            lblAdress.Location = new Point(9, 141);
+            lblAdress.Location = new Point(8, 106);
             lblAdress.Margin = new Padding(2, 0, 2, 0);
             lblAdress.Name = "lblAdress";
-            lblAdress.Size = new Size(174, 23);
+            lblAdress.Size = new Size(141, 20);
             lblAdress.TabIndex = 4;
             lblAdress.Text = "123 Main St. City Center";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(18, 13);
-            pictureBox1.Margin = new Padding(2, 3, 2, 3);
+            pictureBox1.Location = new Point(16, 10);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(59, 60);
+            pictureBox1.Size = new Size(52, 45);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -123,10 +153,10 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(15, 171);
-            pictureBox2.Margin = new Padding(2, 3, 2, 3);
+            pictureBox2.Location = new Point(13, 128);
+            pictureBox2.Margin = new Padding(2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(27, 27);
+            pictureBox2.Size = new Size(24, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
@@ -136,21 +166,21 @@
             lblLocation.AutoSize = true;
             lblLocation.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLocation.ForeColor = Color.White;
-            lblLocation.Location = new Point(7, 109);
+            lblLocation.Location = new Point(6, 82);
             lblLocation.Margin = new Padding(2, 0, 2, 0);
             lblLocation.Name = "lblLocation";
-            lblLocation.Size = new Size(214, 32);
+            lblLocation.Size = new Size(168, 25);
             lblLocation.TabIndex = 3;
             lblLocation.Text = "Downtown Office";
             // 
             // LocationCardControl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(2);
             Name = "LocationCardControl";
-            Size = new Size(263, 217);
+            Size = new Size(230, 163);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -169,5 +199,7 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         public Label lblLocation;
+        private Button button2;
+        private Button button1;
     }
 }
