@@ -11,17 +11,13 @@ namespace EmployeeSalaryManagement.Repository
         }
         public new async Task AddAsync(Checkout checkout)
         {
-            // 1. Find the employee to update their balance
             var employee = await _context.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeID == checkout.EmployeeId);
 
             if (employee != null)
             {
-                // 2. Subtract the transaction amount from their current balance
                 employee.Balance -= checkout.Amount;
             }
-
-            // 3. Add the transaction record
             await _context.Checkouts.AddAsync(checkout);
         }
         public async Task<IEnumerable<Checkout>> GetByEmployeeIdAsync(int employeeId)
@@ -37,7 +33,7 @@ namespace EmployeeSalaryManagement.Repository
                 .Include(c => c.Employee)
                     .ThenInclude(e => e.Position)
                         .ThenInclude(p => p.Location)
-                .OrderByDescending(c => c.TransactionDate) // "Above is the latest"
+                .OrderByDescending(c => c.TransactionDate) 
                 .ToListAsync();
         }
         public async Task<double> GetTotalTransactionAmountThisMonthAsync()

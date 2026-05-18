@@ -111,7 +111,7 @@
             button1.Location = new Point(783, 37);
             button1.Margin = new Padding(2, 3, 2, 3);
             button1.Name = "button1";
-            button1.Size = new Size(87, 25);
+            button1.Size = new Size(87, 28);
             button1.TabIndex = 5;
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = true;

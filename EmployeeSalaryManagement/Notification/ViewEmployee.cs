@@ -51,5 +51,13 @@ namespace EmployeeSalaryManagement.Notification
             _employeeRepo.SoftDeleteAsync(employee, _employeeId);
             MessageBox.Show("Employee Deleted Successfully");
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var employee = _employeeRepo.GetByIdAsync(_employeeId).Result;
+            if(employee == null) return;
+            AddEmployee updadateEmployee = new AddEmployee(employee);
+            updadateEmployee.ShowDialog();
+        }
     }
 }

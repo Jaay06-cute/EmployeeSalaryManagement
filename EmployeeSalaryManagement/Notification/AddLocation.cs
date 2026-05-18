@@ -14,28 +14,62 @@ namespace EmployeeSalaryManagement.Notification
 {
     public partial class AddLocation : Form
     {
+        
+        private bool isUpdateMode = false;
+        private Location _existingLocation;
         public AddLocation()
         {
             InitializeComponent();
+            isUpdateMode = false;
+            this.Text = "Add New Location";
+            btnSubmit.Text = "Save Location"; 
         }
-
-        private async void AddingLoc(object sender, EventArgs e)
+        public AddLocation(Location locationToEdit)
         {
-            if (txtLocation.Text != "" && txtAddress.Text != "")
+            InitializeComponent();
+            isUpdateMode = true;
+            _existingLocation = locationToEdit;
+            this.Text = "Update Location";
+            btnSubmit.Text = "Update";
+            txtLocation.Text = _existingLocation.LocationName;
+            txtAddress.Text = _existingLocation.LocationAddress;
+        }
+        private async void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLocation.Text) || string.IsNullOrWhiteSpace(txtAddress.Text))
             {
-                ILocationRepository repo = new LocationRepository(new SalaryDbContext());
-                var location = new Location
-                {
-                    LocationName = txtLocation.Text,
-                    LocationAddress = txtAddress.Text
-                };
-                await repo.AddAsync(location);
-                await repo.SaveAsync();
-                this.Hide();
+                MessageBox.Show("Please input a valid Address and Location Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+            ILocationRepository repo = new LocationRepository(new SalaryDbContext());
+            try
             {
-                MessageBox.Show("Please Input valid Address and Location");
+                if (isUpdateMode)
+                {
+                    _existingLocation.LocationName = txtLocation.Text;
+                    _existingLocation.LocationAddress = txtAddress.Text;
+
+                    repo.Update(_existingLocation);
+                    await repo.SaveAsync(); 
+                    MessageBox.Show("Location updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    var newLocation = new Location
+                    {
+                        LocationName = txtLocation.Text,
+                        LocationAddress = txtAddress.Text
+                    };
+                    await repo.AddAsync(newLocation);
+                    MessageBox.Show("Location added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                await repo.SaveAsync();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

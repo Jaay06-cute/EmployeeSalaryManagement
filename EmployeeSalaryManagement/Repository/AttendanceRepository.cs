@@ -40,7 +40,7 @@ namespace EmployeeSalaryManagement.Repository
         {
             return await _context.Attendances
                 .Where(a => a.EmployeeId == employeeId && a.Status != "No Work")
-                .OrderByDescending(a => a.Date) // Show newest records first
+                .OrderByDescending(a => a.Date) 
                 .ToListAsync();
         }     
         public async Task<List<Attendance>> GetAttendanceByDateAndLocationAsync(DateTime date, int locationId)
@@ -64,13 +64,11 @@ namespace EmployeeSalaryManagement.Repository
 
                     if (employee?.Position != null)
                     {
-                        // 1. REVERSE the old status effect
                         if (existing.Status == "Present")
                             employee.Balance -= employee.Position.Salary;
                         else if (existing.Status == "Late")
                             employee.Balance -= (employee.Position.Salary * 0.5);
 
-                        // 2. APPLY the new status effect
                         if (attendance.Status == "Present")
                             employee.Balance += employee.Position.Salary;
                         else if (attendance.Status == "Late")

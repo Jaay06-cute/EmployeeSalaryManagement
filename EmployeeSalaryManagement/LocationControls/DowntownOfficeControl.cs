@@ -50,7 +50,6 @@ namespace EmployeeSalaryManagement.LocationControls
                 masterParent.LoadControl(new LocationMainContentControl(_searchTerm), LocationControl.LocationViewMode.MainDashboard);
             }
         }
-
         private void BackArrowClick(object sender, EventArgs e)
         {
             var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
@@ -70,22 +69,14 @@ namespace EmployeeSalaryManagement.LocationControls
             try
             {
                 flpPosition.Controls.Clear();
-                // Use the existing _positionRepo from your constructor
                 var positions = await _positionRepo.SearchPositionsInLocationAsync(_locationId, _searchTerm);
-
                 foreach (var pos in positions)
                 {
                     int employeeCount = pos.Employees.Count;
-
-                    // PASS THE DATA AND THE REPO HERE
                     var card = new PositionCard(pos, _positionRepo);
-
-                    // Set the remaining labels
                     card.lblEmployee.Text = employeeCount.ToString();
-
                     int currentId = pos.PositionId;
                     string currentName = pos.WorkPosition;
-
                     card.CardClicked += (s, e) =>
                     {
                         var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;

@@ -13,7 +13,6 @@ namespace EmployeeSalaryManagement.Repository
         public EmployeeRepository(SalaryDbContext context) : base(context)
         {
         }
-
         public async Task<IEnumerable<Employee>> GetEmployeesByPositionAsync(int positionId)
         {
             return await _context.Employees
@@ -107,7 +106,7 @@ namespace EmployeeSalaryManagement.Repository
             var query = _context.Employees
                 .Include(e => e.Position)
                     .ThenInclude(p => p.Location)
-                .Where(e => e.isDeleted == true); // Only target the Archive
+                .Where(e => e.isDeleted == true); 
 
             if (!string.IsNullOrWhiteSpace(term))
             {

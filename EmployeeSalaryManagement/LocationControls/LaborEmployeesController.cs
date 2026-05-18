@@ -35,17 +35,14 @@ namespace EmployeeSalaryManagement.LocationControls
         public void UpdateSearchFromParent(string term)
         {
             _searchTerm = term;
-            Info(); // Automatically runs the database query and rebinds your DataGridView
+            Info(); 
         }
-        // Add this right under your public LaborEmployeesController(...) constructor
-        // Replace your OnLoad method with this:
         private void LoadControl(UserControl uc)
         {
-            DowntownContent.Controls.Clear();   // remove old page
-            uc.Dock = DockStyle.Fill;     // fill panel
+            DowntownContent.Controls.Clear();  
+            uc.Dock = DockStyle.Fill;     
             DowntownContent.Controls.Add(uc);
         }
-
         private void BackClick(object sender, EventArgs e)
         {
             var masterParent = this.ParentForm?.Controls.Find("LocationControl", true).FirstOrDefault() as LocationControl;
@@ -79,8 +76,6 @@ namespace EmployeeSalaryManagement.LocationControls
                 var employees = await _employeeRepo.SearchEmployeesInPositionAsync(_PositionId, _searchTerm);
                 int count = employees.Count();
                 label11.Text = $"{count} employees found";
-
-                // Convert your results to a list first
                 var updatedList = employees.Select(e => new
                 {
                     ID = e.EmployeeID,
@@ -88,12 +83,7 @@ namespace EmployeeSalaryManagement.LocationControls
                     Salary = e.Position.Salary,
                     SalaryBalance = e.Balance
                 }).ToList();
-
-                // 1. Assign the fresh data directly over the old data
                 dataGridView1.DataSource = updatedList;
-
-                // 2. This safely forces the UI to update every row text 
-                // WITHOUT destroying your custom column header names or column sizing layout!
                 if (dataGridView1.BindingContext != null && updatedList.Count > 0)
                 {
                     ((CurrencyManager)dataGridView1.BindingContext[updatedList]).Refresh();
@@ -111,7 +101,6 @@ namespace EmployeeSalaryManagement.LocationControls
                 var row = dataGridView1.Rows[e.RowIndex];
                 dynamic selectedItem = row.DataBoundItem;
                 int employeeId = selectedItem.ID;
-
                 ViewEmployee employee = new ViewEmployee(employeeId);
                 employee.ShowDialog();
                 _employeeRepo = new Repository.EmployeeRepository(new SalaryDbContext());

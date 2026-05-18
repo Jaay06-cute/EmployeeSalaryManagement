@@ -11,7 +11,6 @@ namespace EmployeeSalaryManagement.EmployeeManagementDbContext
         public DbSet<Attendance> Attendances { get; set; } = null!;
         public DbSet<Checkout> Checkouts { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Attendance>()

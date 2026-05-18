@@ -19,12 +19,10 @@ namespace EmployeeSalaryManagement
             InitializeComponent();
             LoadArchive();
         }
-        // Update your LoadArchive to accept an optional search term
         public async void LoadArchive(string term = "")
         {
             try
             {
-                // Call the new search method
                 var archivedList = await _employeeRepo.SearchArchivedEmployeesAsync(term);
 
                 lblList.Text = archivedList.Count().ToString();
@@ -43,13 +41,11 @@ namespace EmployeeSalaryManagement
             }
         }
 
-        // 1. LIVE FILTERING: Add this event from the Designer
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             LoadArchive(txtSearch.Text.Trim());
         }
 
-        // 2. SEARCH BUTTON: For the "Teleport" or manual click
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadArchive(txtSearch.Text.Trim());

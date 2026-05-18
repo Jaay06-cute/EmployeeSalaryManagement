@@ -16,7 +16,6 @@ namespace EmployeeSalaryManagement.Notification
         {
             InitializeComponent();
         }
-
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))

@@ -11,7 +11,6 @@ using System.Windows.Forms;
 
 namespace EmployeeSalaryManagement.LocationControls
 {
-
     public partial class ViewEmployeeAttendanceControl : UserControl
     {
         private int _employeeID;

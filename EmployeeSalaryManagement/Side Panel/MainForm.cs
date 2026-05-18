@@ -57,10 +57,9 @@ namespace EmployeeSalaryManagement
 
             if (result == DialogResult.Yes)
             {
-                // proceed with logout
                 LoginForm login = new LoginForm();
                 login.Show();
-                this.Close(); // or Hide()
+                this.Close(); 
             }
         }
 

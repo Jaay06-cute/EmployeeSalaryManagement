@@ -35,7 +35,7 @@
             txtPassword = new TextBox();
             btnLogin = new Button();
             label1 = new Label();
-            this.txtCurrentPassword = new TextBox();
+            txtCurrentPassword = new TextBox();
             pnlLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             pnlLogin.Controls.Add(txtPassword);
             pnlLogin.Controls.Add(btnLogin);
             pnlLogin.Controls.Add(label1);
-            pnlLogin.Controls.Add(this.txtCurrentPassword);
+            pnlLogin.Controls.Add(txtCurrentPassword);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
             pnlLogin.Margin = new Padding(2, 3, 2, 3);
@@ -94,6 +94,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(271, 27);
             txtPassword.TabIndex = 6;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -122,12 +123,13 @@
             // 
             // txtCurrentPassword
             // 
-            this.txtCurrentPassword.BackColor = Color.Azure;
-            this.txtCurrentPassword.Location = new Point(47, 129);
-            this.txtCurrentPassword.Margin = new Padding(2, 3, 2, 3);
-            this.txtCurrentPassword.Name = "txtCurrentPassword";
-            this.txtCurrentPassword.Size = new Size(271, 27);
-            this.txtCurrentPassword.TabIndex = 1;
+            txtCurrentPassword.BackColor = Color.Azure;
+            txtCurrentPassword.Location = new Point(47, 129);
+            txtCurrentPassword.Margin = new Padding(2, 3, 2, 3);
+            txtCurrentPassword.Name = "txtCurrentPassword";
+            txtCurrentPassword.Size = new Size(271, 27);
+            txtCurrentPassword.TabIndex = 1;
+            txtCurrentPassword.UseSystemPasswordChar = true;
             // 
             // ChangePassword
             // 

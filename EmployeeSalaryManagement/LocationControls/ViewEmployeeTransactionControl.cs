@@ -23,7 +23,6 @@ namespace EmployeeSalaryManagement.LocationControls
             _employeeID = employeeID;
             LoadTransactions();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             AddTransaction addTransaction = new AddTransaction(_employeeID);
@@ -32,23 +31,15 @@ namespace EmployeeSalaryManagement.LocationControls
         }
         private async void LoadTransactions()
         {
-            // 1. Clear existing items
             floTransaction.Controls.Clear();
-
-            // 2. Fetch data
             var repo = new CheckoutRepository(new SalaryDbContext());
             var transactions = await repo.GetByEmployeeIdAsync(_employeeID);
             var employee = await _repository.GetByIdAsync(_employeeID);
             lblBalance.Text = $"Current Balance : P{employee.Balance}";
-
-            // 3. Create a card for each transaction
             foreach (var item in transactions)
             {
                 var card = new TransactionsCard(item);
-
-                // Make the card stretch to the width of the panel
                 card.Width = floTransaction.Width - 25;
-
                 floTransaction.Controls.Add(card);
             }
         }

@@ -14,15 +14,12 @@ namespace EmployeeSalaryManagement
 {
     public partial class LocationControl : UserControl
     {
-        // Define our possible sub-views
         public enum LocationViewMode
         {
             MainDashboard,
             OfficePositions,
             LaborEmployees
         }
-
-        // Track the current view mode explicitly
         private LocationViewMode _currentViewMode = LocationViewMode.MainDashboard;
         private bool _isSearchingViaButton = false;
 
@@ -40,16 +37,12 @@ namespace EmployeeSalaryManagement
             uc.Dock = DockStyle.Fill;
             LocationContent.Controls.Add(uc);
         }
-
-        // Use this method to change views from back buttons or card clicks
         public void LoadControl(UserControl uc, LocationViewMode viewMode)
         {
             _currentViewMode = viewMode;
             LocationContent.Controls.Clear();
             uc.Dock = DockStyle.Fill;
             LocationContent.Controls.Add(uc);
-
-            // Optional: clear the search box text when switching screens completely
             _isSearchingViaButton = true;
             textBox1.Clear();
             _isSearchingViaButton = false;
@@ -103,7 +96,6 @@ namespace EmployeeSalaryManagement
                 switch (_currentViewMode)
                 {
                     case LocationViewMode.MainDashboard:
-                        // ONLY reload the main dashboard if we are explicitly in dashboard mode
                         LocationContent.Controls.Clear();
                         var mainGrid = new LocationMainContentControl(term);
                         mainGrid.Dock = DockStyle.Fill;
@@ -111,12 +103,10 @@ namespace EmployeeSalaryManagement
                         break;
 
                     case LocationViewMode.LaborEmployees:
-                        // Safely filter employee grid view using dynamic invocation
                         try { ((dynamic)currentControl).UpdateSearchFromParent(term); } catch { }
                         break;
 
                     case LocationViewMode.OfficePositions:
-                        // Safely filter position cards using dynamic invocation
                         try { ((dynamic)currentControl).UpdateSearchFromParent(term); } catch { }
                         break;
                 }

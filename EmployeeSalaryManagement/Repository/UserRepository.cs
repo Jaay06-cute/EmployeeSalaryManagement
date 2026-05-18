@@ -34,12 +34,10 @@ namespace EmployeeSalaryManagement.Repository
         }
         public async Task<User?> AuthenticateAsync(string username, string password)
         {
-            // 1. Look for the user in the database
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
             if (user != null)
             {
-                // 2. Use BCrypt to see if the typed password matches the hashed one in the DB
                 bool isValid = BCrypt.Net.BCrypt.Verify(password, user.Password);
                 if (isValid) return user;
             }

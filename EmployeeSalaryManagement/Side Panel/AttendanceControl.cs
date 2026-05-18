@@ -44,19 +44,13 @@ namespace EmployeeSalaryManagement
             DateTime currentDay = DateTime.Now.Date;
 
             var employees = await employeerepo.GetEmployeesByLocationAsync(_locationId);
-
-            // Store this in the class field so the DataBindingComplete event can see it
             _currentExistingAttendance = (await attendancerepo.GetAttendanceByDateAndLocationAsync(currentDay, _locationId)).ToList();
-
-            // Trigger the binding
             dataGridView1.DataSource = employees.Select(e => new
             {
                 ID = e.EmployeeID,
                 Name = e.EmployeeName,
                 Position = e.Position?.WorkPosition ?? "N/A",
             }).ToList();
-
-            // Update Button
             if (_currentExistingAttendance.Any())
             {
                 button1.Text = "Edit Attendance";
@@ -65,29 +59,23 @@ namespace EmployeeSalaryManagement
             else
             {
                 button1.Text = "Submit Attendance";
-                button1.BackColor = Color.Green;
+                button1.BackColor = Color.LightSeaGreen;
             }
         }
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             if (dataGridView1.Columns["Column3"] is DataGridViewComboBoxColumn statusCol)
             {
-                // 1. Ensure Items exist
                 if (statusCol.Items.Count == 0)
                 {
                     statusCol.Items.AddRange(new object[] { "No Work", "Present", "Absent", "Late" });
                 }
-
-                // 2. Loop through the rows now that binding is 100% finished
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Cells["ID"].Value == null) continue;
 
                     int empId = (int)row.Cells["ID"].Value;
                     var savedRecord = _currentExistingAttendance.FirstOrDefault(a => a.EmployeeId == empId);
-
-                    // 3. Force the value. 
-                    // Note: Use .ToString() to ensure the type matches the ComboBox Item type exactly.
                     row.Cells["Column3"].Value = savedRecord?.Status ?? "No Work";
                 }
             }
@@ -101,7 +89,6 @@ namespace EmployeeSalaryManagement
                 Load();
             }
         }
-
         private async void button1_Click(object sender, EventArgs e)
         {
             try

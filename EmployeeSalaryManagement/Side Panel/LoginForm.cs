@@ -16,7 +16,6 @@ namespace EmployeeSalaryManagement
         {
             InitializeComponent();
         }
-
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             string inputUser = txtUsername.Text.Trim();

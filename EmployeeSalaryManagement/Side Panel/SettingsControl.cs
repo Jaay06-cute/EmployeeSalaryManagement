@@ -14,17 +14,26 @@ namespace EmployeeSalaryManagement
         public SettingsControl()
         {
             InitializeComponent();
+            AssignPanelClickEvent(panel7);
         }
-
-        private void label16_Click(object sender, EventArgs e)
+        private void AssignPanelClickEvent(Control container)
         {
-
+            if (container == null) return;
+            container.Click += pnlPassword;
+            foreach (Control c in container.Controls)
+            {
+                c.Click += pnlPassword;
+                if (c.HasChildren)
+                {
+                    AssignPanelClickEvent(c);
+                }
+            }
         }
 
         private void pnlPassword(object sender, EventArgs e)
         {
             ChangePassword password = new ChangePassword();
-            password.Show();
+            password.ShowDialog();
         }
     }
 }

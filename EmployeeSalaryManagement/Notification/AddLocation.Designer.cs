@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             pnlLogin = new Panel();
-            btnLogin = new Button();
+            btnSubmit = new Button();
             label2 = new Label();
             txtAddress = new TextBox();
             label1 = new Label();
@@ -39,79 +39,79 @@
             // 
             // pnlLogin
             // 
-            pnlLogin.Controls.Add(btnLogin);
+            pnlLogin.Controls.Add(btnSubmit);
             pnlLogin.Controls.Add(label2);
             pnlLogin.Controls.Add(txtAddress);
             pnlLogin.Controls.Add(label1);
             pnlLogin.Controls.Add(txtLocation);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
-            pnlLogin.Margin = new Padding(2);
+            pnlLogin.Margin = new Padding(2, 3, 2, 3);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(335, 266);
+            pnlLogin.Size = new Size(383, 355);
             pnlLogin.TabIndex = 2;
             // 
-            // btnLogin
+            // btnSubmit
             // 
-            btnLogin.BackColor = SystemColors.ActiveCaption;
-            btnLogin.BackgroundImageLayout = ImageLayout.Zoom;
-            btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(86, 146);
-            btnLogin.Margin = new Padding(2);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(162, 26);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "+ Add Location";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += AddingLoc;
+            btnSubmit.BackColor = SystemColors.ActiveCaption;
+            btnSubmit.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSubmit.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSubmit.Location = new Point(98, 195);
+            btnSubmit.Margin = new Padding(2, 3, 2, 3);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(185, 35);
+            btnSubmit.TabIndex = 5;
+            btnSubmit.Text = "+ Add Location";
+            btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(48, 105);
+            label2.Location = new Point(55, 140);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(49, 13);
+            label2.Size = new Size(63, 19);
             label2.TabIndex = 4;
             label2.Text = "Address";
             // 
             // txtAddress
             // 
             txtAddress.BackColor = Color.Azure;
-            txtAddress.Location = new Point(48, 119);
-            txtAddress.Margin = new Padding(2);
+            txtAddress.Location = new Point(55, 159);
+            txtAddress.Margin = new Padding(2, 3, 2, 3);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(238, 23);
+            txtAddress.Size = new Size(271, 27);
             txtAddress.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(48, 64);
+            label1.Location = new Point(55, 85);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(86, 13);
+            label1.Size = new Size(110, 19);
             label1.TabIndex = 2;
             label1.Text = "Location Name";
             // 
             // txtLocation
             // 
             txtLocation.BackColor = Color.Azure;
-            txtLocation.Location = new Point(48, 79);
-            txtLocation.Margin = new Padding(2);
+            txtLocation.Location = new Point(55, 105);
+            txtLocation.Margin = new Padding(2, 3, 2, 3);
             txtLocation.Name = "txtLocation";
-            txtLocation.Size = new Size(238, 23);
+            txtLocation.Size = new Size(271, 27);
             txtLocation.TabIndex = 1;
             // 
             // AddLocation
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(335, 266);
+            ClientSize = new Size(383, 355);
             Controls.Add(pnlLogin);
-            Margin = new Padding(2);
+            Margin = new Padding(2, 3, 2, 3);
             MaximizeBox = false;
             Name = "AddLocation";
             StartPosition = FormStartPosition.CenterScreen;
@@ -124,7 +124,7 @@
         #endregion
 
         private Panel pnlLogin;
-        private Button btnLogin;
+        private Button btnSubmit;
         private Label label2;
         private TextBox txtAddress;
         private Label label1;

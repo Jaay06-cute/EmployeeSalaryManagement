@@ -39,6 +39,7 @@
             dataGridView1 = new DataGridView();
             Date = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
+            button5 = new Button();
             TopBar.SuspendLayout();
             MainContentView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -47,6 +48,7 @@
             // TopBar
             // 
             TopBar.BackColor = Color.Azure;
+            TopBar.Controls.Add(button5);
             TopBar.Controls.Add(button2);
             TopBar.Controls.Add(lblID);
             TopBar.Controls.Add(button1);
@@ -63,7 +65,7 @@
             button2.BackColor = Color.Red;
             button2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(530, 20);
+            button2.Location = new Point(511, 20);
             button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(95, 35);
@@ -164,6 +166,20 @@
             Status.Name = "Status";
             Status.Width = 600;
             // 
+            // button5
+            // 
+            button5.BackColor = Color.LawnGreen;
+            button5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.ForeColor = SystemColors.ButtonHighlight;
+            button5.Location = new Point(607, 20);
+            button5.Margin = new Padding(2);
+            button5.Name = "button5";
+            button5.Size = new Size(95, 35);
+            button5.TabIndex = 5;
+            button5.Text = "EDIT";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
             // ViewEmployee
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -197,5 +213,6 @@
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn Date;
         private DataGridViewTextBoxColumn Status;
+        private Button button5;
     }
 }
