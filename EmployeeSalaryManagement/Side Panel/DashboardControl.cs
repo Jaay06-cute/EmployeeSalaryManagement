@@ -28,8 +28,8 @@ namespace EmployeeSalaryManagement
             double amount = await _employee.GetTotalEmployeeBalanceAsync();
             double tramsactionCount = await _checkoutRepository.GetTransactionCountThisMonthAsync();
             lblEmployee.Text = _employee.GetAllEmployeesAsync().Result.Count().ToString();
-            lblSalary.Text = "P" + montly.ToString();
-            lblBalance.Text = "P" + amount.ToString();
+            lblSalary.Text = "Php  " + montly.ToString();
+            lblBalance.Text = "Php  " + amount.ToString();
             lblCount.Text = tramsactionCount.ToString();
             dataGridView2.DataSource = transactions.Select(c => new
             {

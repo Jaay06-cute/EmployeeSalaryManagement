@@ -35,7 +35,7 @@ namespace EmployeeSalaryManagement.LocationControls
             var repo = new CheckoutRepository(new SalaryDbContext());
             var transactions = await repo.GetByEmployeeIdAsync(_employeeID);
             var employee = await _repository.GetByIdAsync(_employeeID);
-            lblBalance.Text = $"Current Balance : P{employee.Balance}";
+            lblBalance.Text = $"Current Balance : Php  {employee.Balance}";
             foreach (var item in transactions)
             {
                 var card = new TransactionsCard(item);

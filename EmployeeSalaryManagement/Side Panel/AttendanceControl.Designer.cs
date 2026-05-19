@@ -119,7 +119,6 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Column2, Column4, Column3 });
             dataGridView1.Location = new Point(34, 77);

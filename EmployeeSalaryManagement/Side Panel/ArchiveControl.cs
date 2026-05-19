@@ -64,7 +64,7 @@ namespace EmployeeSalaryManagement
                 MessageBox.Show("Employee restored to active list.");
                 LoadArchive();
             }
-            if (dataGridView2.Columns[e.ColumnIndex].HeaderText == "Detele") 
+            if (dataGridView2.Columns[e.ColumnIndex].HeaderText == "Delete") 
             {
                 var confirm = MessageBox.Show("Are you sure you want to PERMANENTLY delete this record?",
                                             "Confirm Delete", MessageBoxButtons.YesNo);

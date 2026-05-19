@@ -35,14 +35,14 @@
             lblList = new Label();
             label2 = new Label();
             dataGridView2 = new DataGridView();
-            btnSearch = new Button();
-            txtSearch = new TextBox();
             Column1 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewButtonColumn();
             Column6 = new DataGridViewButtonColumn();
+            btnSearch = new Button();
+            txtSearch = new TextBox();
             TopBar.SuspendLayout();
             DowntownContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -124,7 +124,6 @@
             // 
             // dataGridView2
             // 
-            dataGridView2.BackgroundColor = Color.White;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column2, Column4, Column5, Column6 });
             dataGridView2.GridColor = Color.White;
@@ -134,30 +133,10 @@
             dataGridView2.RowHeadersVisible = false;
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(863, 480);
             dataGridView2.TabIndex = 13;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
-            // 
-            // btnSearch
-            // 
-            btnSearch.Location = new Point(747, 499);
-            btnSearch.Margin = new Padding(2, 3, 2, 3);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(129, 31);
-            btnSearch.TabIndex = 12;
-            btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(14, 499);
-            txtSearch.Margin = new Padding(2, 3, 2, 3);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search archived employees.....";
-            txtSearch.Size = new Size(730, 27);
-            txtSearch.TabIndex = 11;
-            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // Column1
             // 
@@ -224,6 +203,27 @@
             Column6.MinimumWidth = 8;
             Column6.Name = "Column6";
             Column6.ReadOnly = true;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(747, 499);
+            btnSearch.Margin = new Padding(2, 3, 2, 3);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(129, 31);
+            btnSearch.TabIndex = 12;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(14, 499);
+            txtSearch.Margin = new Padding(2, 3, 2, 3);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search archived employees.....";
+            txtSearch.Size = new Size(730, 27);
+            txtSearch.TabIndex = 11;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // ArchiveControl
             // 

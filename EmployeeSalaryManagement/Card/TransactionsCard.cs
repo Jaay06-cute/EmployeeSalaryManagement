@@ -22,7 +22,7 @@ namespace EmployeeSalaryManagement.Card
         {
             lblDate.Text = checkout.TransactionDate.ToString("MMMM dd, yyyy");
             lblTransactionType.Text = checkout.TransactionType;
-            lblAmount.Text = $"-${checkout.Amount:N2}";
+            lblAmount.Text = $"-Php  {checkout.Amount:N2}";
             lblAmount.ForeColor = checkout.TransactionType == "Pay Out" ? Color.Green : Color.Red;
         }
     }
