@@ -44,10 +44,10 @@
             // 
             picLogo.BackColor = Color.White;
             picLogo.Image = (Image)resources.GetObject("picLogo.Image");
-            picLogo.Location = new Point(181, 7);
-            picLogo.Margin = new Padding(2, 2, 2, 2);
+            picLogo.Location = new Point(207, 9);
+            picLogo.Margin = new Padding(2, 3, 2, 3);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(175, 150);
+            picLogo.Size = new Size(200, 200);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
@@ -62,9 +62,9 @@
             pnlLogin.Controls.Add(picLogo);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
-            pnlLogin.Margin = new Padding(2, 2, 2, 2);
+            pnlLogin.Margin = new Padding(2, 3, 2, 3);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(545, 326);
+            pnlLogin.Size = new Size(623, 435);
             pnlLogin.TabIndex = 1;
             // 
             // btnLogin
@@ -72,10 +72,10 @@
             btnLogin.BackColor = SystemColors.ActiveCaption;
             btnLogin.BackgroundImageLayout = ImageLayout.Zoom;
             btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(190, 239);
-            btnLogin.Margin = new Padding(2, 2, 2, 2);
+            btnLogin.Location = new Point(217, 319);
+            btnLogin.Margin = new Padding(2, 3, 2, 3);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(162, 26);
+            btnLogin.Size = new Size(185, 35);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "LOGIN";
             btnLogin.UseVisualStyleBackColor = false;
@@ -85,20 +85,20 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(157, 197);
+            label2.Location = new Point(179, 263);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(67, 13);
+            label2.Size = new Size(87, 19);
             label2.TabIndex = 4;
             label2.Text = "PASSWORD";
             // 
             // txtPassword
             // 
             txtPassword.BackColor = Color.Azure;
-            txtPassword.Location = new Point(157, 211);
-            txtPassword.Margin = new Padding(2, 2, 2, 2);
+            txtPassword.Location = new Point(179, 281);
+            txtPassword.Margin = new Padding(2, 3, 2, 3);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(238, 23);
+            txtPassword.Size = new Size(271, 27);
             txtPassword.TabIndex = 3;
             txtPassword.UseSystemPasswordChar = true;
             // 
@@ -106,31 +106,32 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(157, 157);
+            label1.Location = new Point(179, 209);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(68, 13);
+            label1.Size = new Size(84, 19);
             label1.TabIndex = 2;
             label1.Text = "USERNAME";
             // 
             // txtUsername
             // 
             txtUsername.BackColor = Color.Azure;
-            txtUsername.Location = new Point(157, 170);
-            txtUsername.Margin = new Padding(2, 2, 2, 2);
+            txtUsername.Location = new Point(179, 227);
+            txtUsername.Margin = new Padding(2, 3, 2, 3);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(238, 23);
+            txtUsername.Size = new Size(271, 27);
             txtUsername.TabIndex = 1;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnLogin;
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(545, 326);
+            ClientSize = new Size(623, 435);
             Controls.Add(pnlLogin);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Payroll";

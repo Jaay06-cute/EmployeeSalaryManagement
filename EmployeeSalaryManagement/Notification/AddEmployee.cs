@@ -16,31 +16,43 @@ namespace EmployeeSalaryManagement.Notification
     {
         private int _positionId;
         private bool isUpdateMode = false;
-        private Employee _existingEmployee; 
+        private Employee _existingEmployee;
+
         public AddEmployee(int positionId)
         {
             InitializeComponent();
             _positionId = positionId;
             isUpdateMode = false;
+            lblBalance.Visible = false;
+            txtBalance.Visible = false;
+            btnLogin.Location = new Point(99, 147);
             this.Text = "Add New Employee";
             btnLogin.Text = "Save Employee";
         }
+
         public AddEmployee(Employee employeeToEdit)
         {
             InitializeComponent();
             isUpdateMode = true;
             _existingEmployee = employeeToEdit;
             _positionId = employeeToEdit.PositionId;
+
+            lblBalance.Visible = true;
+            txtBalance.Visible = true;
+
+            btnLogin.Location = new Point(99, 223);
+
             this.Text = "Update Employee Details";
             btnLogin.Text = "Update";
             txtName.Text = _existingEmployee.EmployeeName;
+            txtBalance.Text = _existingEmployee.Balance.ToString();
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("Please enter a valid Employee Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -51,31 +63,36 @@ namespace EmployeeSalaryManagement.Notification
                 if (isUpdateMode)
                 {
                     _existingEmployee.EmployeeName = txtName.Text;
-                    _existingEmployee.PositionId = _positionId; // Kept intact
+                    if (double.TryParse(txtBalance.Text, out double updatedBalance))
+                    {
+                        _existingEmployee.Balance = updatedBalance;
+                    }
 
                     repo.Update(_existingEmployee);
-                    await repo.SaveAsync(); 
-                    MessageBox.Show("Employee records updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    double.TryParse(txtBalance.Text, out double initialBalance);
+
                     var newEmployee = new Model.Employee
                     {
                         EmployeeName = txtName.Text,
-                        PositionId = _positionId
+                        PositionId = _positionId,
+                        Balance = initialBalance
                     };
 
                     await repo.AddAsync(newEmployee);
-                    MessageBox.Show("Employee added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                await repo.SaveAsync();
 
+                await repo.SaveAsync();
                 this.DialogResult = DialogResult.OK;
-                this.Close(); 
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while saving employee data: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

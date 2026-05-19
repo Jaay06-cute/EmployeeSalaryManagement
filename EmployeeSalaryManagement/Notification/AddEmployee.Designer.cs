@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             pnlLogin = new Panel();
+            lblBalance = new Label();
+            txtBalance = new TextBox();
             btnLogin = new Button();
             label1 = new Label();
             txtName = new TextBox();
@@ -37,25 +39,46 @@
             // 
             // pnlLogin
             // 
+            pnlLogin.Controls.Add(lblBalance);
+            pnlLogin.Controls.Add(txtBalance);
             pnlLogin.Controls.Add(btnLogin);
             pnlLogin.Controls.Add(label1);
             pnlLogin.Controls.Add(txtName);
             pnlLogin.Dock = DockStyle.Fill;
             pnlLogin.Location = new Point(0, 0);
-            pnlLogin.Margin = new Padding(2, 2, 2, 2);
+            pnlLogin.Margin = new Padding(2, 3, 2, 3);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(335, 266);
+            pnlLogin.Size = new Size(383, 355);
             pnlLogin.TabIndex = 3;
+            // 
+            // lblBalance
+            // 
+            lblBalance.AutoSize = true;
+            lblBalance.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBalance.Location = new Point(64, 147);
+            lblBalance.Name = "lblBalance";
+            lblBalance.Size = new Size(61, 19);
+            lblBalance.TabIndex = 6;
+            lblBalance.Text = "Balance";
+            // 
+            // txtBalance
+            // 
+            txtBalance.BackColor = Color.Azure;
+            txtBalance.Location = new Point(64, 167);
+            txtBalance.Margin = new Padding(3, 4, 3, 4);
+            txtBalance.Name = "txtBalance";
+            txtBalance.Size = new Size(271, 27);
+            txtBalance.TabIndex = 7;
             // 
             // btnLogin
             // 
             btnLogin.BackColor = SystemColors.ActiveCaption;
             btnLogin.BackgroundImageLayout = ImageLayout.Zoom;
             btnLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(88, 124);
-            btnLogin.Margin = new Padding(2, 2, 2, 2);
+            btnLogin.Location = new Point(99, 223);
+            btnLogin.Margin = new Padding(2, 3, 2, 3);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(162, 27);
+            btnLogin.Size = new Size(185, 36);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "+ Add Employee";
             btnLogin.UseVisualStyleBackColor = false;
@@ -65,28 +88,30 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(56, 64);
+            label1.Location = new Point(64, 85);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(38, 13);
+            label1.Size = new Size(49, 19);
             label1.TabIndex = 2;
             label1.Text = "Name";
             // 
             // txtName
             // 
             txtName.BackColor = Color.Azure;
-            txtName.Location = new Point(56, 79);
-            txtName.Margin = new Padding(2, 2, 2, 2);
+            txtName.Location = new Point(64, 105);
+            txtName.Margin = new Padding(2, 3, 2, 3);
             txtName.Name = "txtName";
-            txtName.Size = new Size(238, 23);
+            txtName.Size = new Size(271, 27);
             txtName.TabIndex = 1;
             // 
             // AddEmployee
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnLogin;
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(335, 266);
+            ClientSize = new Size(383, 355);
             Controls.Add(pnlLogin);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AddEmployee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddEmployee";
@@ -101,5 +126,7 @@
         private Button btnLogin;
         private Label label1;
         private TextBox txtName;
+        private Label lblBalance;  
+        private TextBox txtBalance;
     }
 }

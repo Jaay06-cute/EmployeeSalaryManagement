@@ -153,14 +153,14 @@
             label2.TabIndex = 11;
             label2.Text = "Present Date";
             // 
-            // label1
+            // lblName
             // 
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.Black;
             lblName.Location = new Point(17, 78);
             lblName.Margin = new Padding(2, 0, 2, 0);
-            lblName.Name = "label1";
+            lblName.Name = "lblName";
             lblName.Size = new Size(124, 23);
             lblName.TabIndex = 10;
             lblName.Text = "John Martinez";
@@ -191,6 +191,7 @@
             // 
             // AddTransaction
             // 
+            AcceptButton = button2;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(460, 369);
